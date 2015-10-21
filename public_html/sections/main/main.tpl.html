@@ -1,0 +1,25 @@
+<div class="container"> 
+    <br>
+    
+    <div class="row">
+        
+        
+        <button ng-click="main.openAddDialog()" class="btn btn-lg btn-primary">Add a Folder</button>
+        
+        
+    </div>
+<br/>
+    <div class="row col-sm-4"  ng-repeat="item in main.results track by item.id" >
+
+        <folder folder="item" />
+
+    </div>
+
+    <div class="row" ng-if="main.results.length == 0">
+        
+        <div class="well well-lg">You have not defined any morgue folders. Click on the Add button</div>
+        
+    </div>
+    
+
+</div>

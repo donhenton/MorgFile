@@ -1,0 +1,29 @@
+ 
+
+.glyphicon.glyphicon-folder-close {
+    font-size: 75px;
+    color: goldenrod;
+}
+
+.glyphicon.glyphicon-edit   {
+    font-size: 25px;
+    color: blue;
+}
+.glyphicon.glyphicon-remove-circle
+{
+    font-size: 25px;
+    color: red;
+}
+
+.folderTitle
+{
+    font-family: Verdana;
+    font-size: 15px;
+    font-weight: bold;
+    font-variant:all-small-caps
+}
+.folder 
+{
+    margin: 25px;
+    display: inline-block
+}

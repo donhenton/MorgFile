@@ -1,0 +1,35 @@
+{
+  "name": "tv-tracker",
+  "version": "0.0.0",
+  "authors": [
+    "d <dhenton@localhost.com>"
+  ],
+  "description": "packt pub angular video code",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "packt",
+    "pub",
+    "angular",
+    "education"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "root/assets/js",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-bootstrap": "~0.14.2",
+    "bootstrap": "~3.3.5",
+    "angular-animate": "~1.4.7",
+    "angular-local-storage": "~0.2.3",
+    "angular-messages": "~1.4.7"
+  }
+}
