@@ -9,6 +9,28 @@ function routes($routeProvider) {
                 controller: 'MainController',
                 controllerAs: 'main'
             })
+            
+            .when('/images/:id', {
+                templateUrl: 'sections/images/images.tpl.html',
+                controller: 'ImagesController',
+                controllerAs: 'images',
+                resolve: {
+                    folder: function (FolderService, $route) {
+                        return FolderService.getFolder($route.current.params.id);
+                         
+                    }
+                    
+//                    maybe need to get images??? or are they attached to the folder in mongo?           
+//                    ,
+//                    seasons: function (ShowService, $route) {
+//                        return ShowService.get($route.current.params.id).then(function (response) {
+//                            return response.seasons;
+//                        })
+//                    }
+                }
+            })
+            
+            
             /*
             .when('/my-shows', {
                 templateUrl: 'sections/my-shows/my-shows.tpl.html',
@@ -20,21 +42,7 @@ function routes($routeProvider) {
                 controller: 'SearchController',
                 controllerAs: 'search'
             })
-            .when('/show/:id', {
-                templateUrl: 'sections/show/show.tpl.html',
-                controller: 'ShowController',
-                controllerAs: 'show',
-                resolve: {
-                    data: function (StoreFactory, $route) {
-                        return StoreFactory.getShow($route.current.params.id);
-                    },
-                    seasons: function (ShowService, $route) {
-                        return ShowService.get($route.current.params.id).then(function (response) {
-                            return response.seasons;
-                        })
-                    }
-                }
-            })
+            
             */
             .otherwise({
                 redirectTo: '/'

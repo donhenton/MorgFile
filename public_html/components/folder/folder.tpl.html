@@ -1,4 +1,12 @@
-<div class="folder"><span class="folderTitle">{{folder.name}}</span><br><i class="spacer glyphicon glyphicon-folder-close"></i>
+<div class="folder">
+    
+    <a href="#/images/{{folder.id}}">
+        <span class="folderTitle">{{folder.name}}</span></a><br>
+    
+    
+    <a href="#/images/{{folder.id}}">
+    <i class="spacer glyphicon glyphicon-folder-close"></i>
+    </a>
     <a href="#" ng-click="$event.preventDefault(); openEditDialog(folder)">
         
         <i  class="spacer glyphicon glyphicon-edit"></i></a>
