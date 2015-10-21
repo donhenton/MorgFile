@@ -29,7 +29,15 @@ function folderService($log)
     function createEmptyFolderStructure()
     {
         idCounter = idCounter + 1;
-        return {"name": "", "id": idCounter};
+        var newItem =  {"name": "", "id": idCounter};
+        newItem.images = {};
+        newItem.images.google = [];
+        newItem.images.pinterest = [];
+        newItem.images.flickr = [];
+        
+        return newItem;
+        
+        
     }
 
     function getFolders() {
@@ -56,20 +64,13 @@ function folderService($log)
         var value = null;
         for (var i = 0; i < sampleData.length; i++)
         {
-            
-            
-            if (sampleData[i].id == id)
+              if (sampleData[i].id == id)
             {
                 // $log.debug("value "+sampleData[i].id+" id "+id +" "+(sampleData[i].id == id))
                  value = sampleData[i];
-                  
-
-            }
+             }
         }
-        
         return value;
-         
-
     }
 
     return data;
