@@ -5,12 +5,13 @@ angular
 
 
 
-function folderService( )
+function folderService($log )
 {
     var data = {
          
         "createEmptyFolderStructure": createEmptyFolderStructure,
         "getFolders": getFolders,
+        "removeFolder": removeFolder,
         "saveFolder": saveFolder
 
 
@@ -33,7 +34,18 @@ function folderService( )
  
     function getFolders(){ return sampleData;}
     function saveFolder(folder){ sampleData.push(folder)}; 
-
+    function removeFolder(folder)
+    {
+        angular.forEach(sampleData, function(value,key)
+        {
+            if (value.id === folder.id)
+            {
+               // $log.debug("id is "+value.id)
+                sampleData.splice(key, 1);
+                 
+            }
+        });
+    }
      
     return data;
 

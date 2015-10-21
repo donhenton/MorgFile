@@ -1,4 +1,4 @@
-angular.module('app').directive('folder', function (DialogService ) {
+angular.module('app').directive('folder', function (DialogService,FolderService,$log) {
     //folderItem will be the attribute on the tag called folder
 
 
@@ -10,18 +10,31 @@ angular.module('app').directive('folder', function (DialogService ) {
         },
         controller: function ($scope, $attrs, $element) {
             //$scope.folder contains the folder object in the display
-            
-            
-            
-             
-            $scope.openEditDialog = function (selectedFolderItem)
+
+
+            $scope.openConfirmDialog = function (selectedFolderItem)
             {
+                var confirmResult = DialogService.showConfirmDialog("Delete '"
+                        + selectedFolderItem.name + "' ?")
                 
-                DialogService.showFolderDialog(selectedFolderItem);
- 
+                confirmResult.then(function (result) {
+                    //$log.debug("result is "+result)
+                    if (result == 'confirm')
+                    {
+                        FolderService.removeFolder(selectedFolderItem);
+                    } 
+                });
+
             };
 
- 
+            $scope.openEditDialog = function (selectedFolderItem)
+            {
+
+                DialogService.showFolderDialog(selectedFolderItem);
+
+            };
+
+
 
         }
     };

@@ -7,17 +7,33 @@ angular
 function dialogService($uibModal)
 {
     var data = {
-        "showFolderDialog": showFolderDialog
-
+        "showFolderDialog": showFolderDialog,
+        "showConfirmDialog": showConfirmDialog
 
 
     };
  
+    function showConfirmDialog(dialogText)
+    {
+        var modalInstance =
+                $uibModal.open({
+                    templateUrl: 'sections/dialogs/confirm.tpl.html',
+                    controller: 'ConfirmCtrl',
+                    size: 'med',
+                    resolve: {
+                        dialogText: function () {
+                            return dialogText;
+                        }
+                    }
+                });
+       
+        
+        return modalInstance.result;
+    };
 
     function showFolderDialog(selectedFolderItem)
     {
-        //console.log(selectedFolderItem);
-        var res = null;
+         
         var modalInstance =
                 $uibModal.open({
                     templateUrl: 'sections/dialogs/editfolder.tpl.html',
