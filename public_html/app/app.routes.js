@@ -9,7 +9,7 @@ function routes($routeProvider) {
                 controller: 'MainController',
                 controllerAs: 'main'
             })
-            
+
             .when('/images/:id', {
                 templateUrl: 'sections/images/images.tpl.html',
                 controller: 'ImagesController',
@@ -17,33 +17,43 @@ function routes($routeProvider) {
                 resolve: {
                     folder: function (FolderService, $route) {
                         return FolderService.getFolder($route.current.params.id);
-                         
+
                     }
-                    
-//                    maybe need to get images??? or are they attached to the folder in mongo?           
-//                    ,
-//                    seasons: function (ShowService, $route) {
-//                        return ShowService.get($route.current.params.id).then(function (response) {
-//                            return response.seasons;
-//                        })
-//                    }
+
                 }
             })
-            
-            
+
+            .when('/browse-images', {
+                templateUrl: 'sections/browse-images/browse-images.tpl.html',
+                controller: 'BrowseImagesController',
+                controllerAs: 'browseImages',
+                resolve: {
+                    images: function () {
+                        
+                        return {"data":[{"id":34},{"id":56}]}
+                    }
+
+
+
+
+                }
+            })
+
+
+
             /*
-            .when('/my-shows', {
-                templateUrl: 'sections/my-shows/my-shows.tpl.html',
-                controller: 'MyShowsController',
-                controllerAs: 'myShows'
-            })
-            .when('/search', {
-                templateUrl: 'sections/search/search.tpl.html',
-                controller: 'SearchController',
-                controllerAs: 'search'
-            })
-            
-            */
+             .when('/my-shows', {
+             templateUrl: 'sections/my-shows/my-shows.tpl.html',
+             controller: 'MyShowsController',
+             controllerAs: 'myShows'
+             })
+             .when('/search', {
+             templateUrl: 'sections/search/search.tpl.html',
+             controller: 'SearchController',
+             controllerAs: 'search'
+             })
+             
+             */
             .otherwise({
                 redirectTo: '/'
             });
