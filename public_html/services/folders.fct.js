@@ -18,12 +18,12 @@ function folderService($log)
     };
     var idCounter = 6;
     var sampleData = [
-        {"name": "sci-fi and space ships", "id": 1},
-        {"name": "Fantasy", "id": 2},
-        {"name": "Inking Samples", "id": 3},
-        {"name": "Anatomy Sample", "id": 4},
-        {"name": "Animals and Creature Design", "id": 5},
-        {"name": "Character Design", "id": 6}
+        {"name": "sci-fi and space ships", "id": 1,"images":{"google":[],"flickr":[],"pinterest":[]} },
+        {"name": "Fantasy", "id": 2,"images":{"google":[],"flickr":[],"pinterest":[]} },
+        {"name": "Inking Samples", "id": 3,"images":{"google":[],"flickr":[],"pinterest":[]} },
+        {"name": "Anatomy Sample", "id": 4,"images":{"google":[],"flickr":[],"pinterest":[]} },
+        {"name": "Animals and Creature Design", "id": 5,"images":{"google":[],"flickr":[],"pinterest":[]} },
+        {"name": "Character Design", "id": 6,"images":{"google":[],"flickr":[],"pinterest":[]} }
     ];
 
     function createEmptyFolderStructure()
@@ -68,6 +68,7 @@ function folderService($log)
             {
                 // $log.debug("value "+sampleData[i].id+" id "+id +" "+(sampleData[i].id == id))
                  value = sampleData[i];
+                 break;
              }
         }
         return value;

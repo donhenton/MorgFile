@@ -2,6 +2,6 @@ angular.module('app').controller('ImagesController', function (folder, DialogSer
 
     var vm = this;
     vm.folderName = folder.name;
-    $log.debug(vm.folderName)
+   // $log.debug(vm.folderName)
 
 });
