@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/index.html</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/sections/browse-images/browse-images.ctl.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/sections/browse-images/browse-images.tpl.html</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/components/image-widget/image-widget.drct.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/sections/main/main.tpl.html</file>
+        </group>
     </open-files>
 </project-private>

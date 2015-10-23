@@ -1,14 +1,21 @@
-  
 
-<div class="container">
 
     
     
   
-    
-   <div class="row col-sm-4"  ng-repeat="imageItem in browseImages.images track by imageItem.id" >
+<div>   
+   <span ng-repeat="imageItem in browseImages.imageBuffer track by imageItem.id" >
 
         <image-widget image="imageItem" />
 
-    </div>
+    </span>
 </div>
+
+
+<div>
+<uib-pagination total-items="browseImages.totalImages" 
+                ng-model="browseImages.currentPage" 
+                items-per-page="browseImages.maxImages" 
+                ng-change="browseImages.pageChanged()"></uib-pagination>
+    
+</div>  
