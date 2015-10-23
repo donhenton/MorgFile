@@ -1,4 +1,4 @@
-angular.module('app').controller('BrowseImagesController', function ($log, images) {
+angular.module('app').controller('BrowseImagesController', function ($log, images,$window) {
 
     var vm = this;
     vm.images = images.data;
@@ -7,6 +7,7 @@ angular.module('app').controller('BrowseImagesController', function ($log, image
     vm.currentPage = 1;
     vm.totalImages = images.data.length;
     // console.log(images.length)
+   // $window.parsePinBtns();
 
     vm.pageChanged = function ()
     {
