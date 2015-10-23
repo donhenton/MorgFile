@@ -2,7 +2,7 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
 
     var vm = this;
     vm.images = images.data;
-    vm.maxImages = 4;
+    vm.maxImages = 10;
     vm.imageBuffer = new Array(vm.maxImages);
     vm.currentPage = 1;
     vm.totalImages = images.data.length;
@@ -23,7 +23,12 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
       // that tag exposes the build function under the name
       // that is the attribute value. the function is attached to the
       // global window object
-       parsePinBtns();
+      // this code is reached one type with this undefined
+      
+      if (typeof parsePinBtns != 'undefined')
+      {
+            parsePinBtns();
+      }
     });
 
     vm.pageChanged = function ()
@@ -63,8 +68,7 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
                  if (nullIdx == -1)
                  {
                      nullIdx = i;
-                 }
-                 
+                 }                
                  delCount = delCount +1;
              }
         }
