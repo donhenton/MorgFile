@@ -27,5 +27,5 @@
     }, 10);
 
   }
-}(window, document, '//assets.pinterest.com/js/pinit_main.js'));
-//}(window, document, ' js/vendor/pinterest/pin_sample_main.js'));
+//}(window, document, '//assets.pinterest.com/js/pinit_main.js'));
+}(window, document, 'assets/pinterest/pin_sample_main.js'));

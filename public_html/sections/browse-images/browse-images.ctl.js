@@ -28,6 +28,8 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
       if (typeof parsePinBtns != 'undefined')
       {
             parsePinBtns();
+            
+            parsePinBtns_grid(document,vm.imageBuffer); 
       }
     });
 

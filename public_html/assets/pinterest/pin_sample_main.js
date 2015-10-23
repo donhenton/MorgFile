@@ -1438,10 +1438,25 @@
             }
           }
 
+          //MAJOR HACK DHH BEWARE ///////////////////////////////////////////
+          /*
+           * grid function exposed under <name_passed_in>_grid
+           * parent elem, data
+           */
+          
+          
           if (typeof $.v.config.build === 'string') {
             $.w[$.v.config.build] = function (el) {
               $.f.build(el);
             };
+            
+            $.w[$.v.config.build+"_grid"] =   function (parent,pins) {
+                
+                
+              $.f.grid(parent, pins, 'external_pins');
+            };
+            
+            
           }
 
           $.w.setTimeout(function () {
