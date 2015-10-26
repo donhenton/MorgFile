@@ -10,13 +10,13 @@ function routes($routeProvider) {
                 controllerAs: 'main'
             })
 
-            .when('/images/:id', {
-                templateUrl: 'sections/images/images.tpl.html',
-                controller: 'ImagesController',
-                controllerAs: 'images',
+            .when('/pinterest-boards', {
+                templateUrl: 'sections/pinterest-boards/pinterest-boards.tpl.html',
+                controller: 'PinterestBoardsController',
+                controllerAs: 'pinterestBoards',
                 resolve: {
-                    folder: function (FolderService, $route) {
-                        return FolderService.getFolder($route.current.params.id);
+                    boardListing: function (BoardsService, $route) {
+                        return BoardsService.getBoards($route.current.params.id);
 
                     }
 
