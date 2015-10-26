@@ -29,7 +29,7 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
       {
             parsePinBtns();
             
-            parsePinBtns_grid(document,vm.imageBuffer); 
+           //  parsePinBtns_grid(document,vm.imageBuffer); 
       }
     });
 
