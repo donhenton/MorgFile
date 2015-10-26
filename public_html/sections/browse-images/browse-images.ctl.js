@@ -6,6 +6,7 @@ angular.module('app').controller('BrowseImagesController', function ($scope,$log
     vm.imageBuffer = new Array(vm.maxImages);
     vm.currentPage = 1;
     vm.totalImages = images.data.length;
+    vm.folder = images.folder
     // console.log(images.length)
     // $window.parsePinBtns();
 

@@ -23,14 +23,17 @@ function routes($routeProvider) {
                 }
             })
 
-            .when('/browse-images', {
+            .when('/browse-images/:id', {
                 templateUrl: 'sections/browse-images/browse-images.tpl.html',
                 controller: 'BrowseImagesController',
                 controllerAs: 'browseImages',
                 resolve: {
-                    images: function () {
+                    images: function (FolderService,$route) {
 
-                        return {"data":
+                        return {
+                                "folder": FolderService.getFolder($route.current.params.id),
+                            
+                                "data":
                                     [{
                                             "url": "https://www.pinterest.com/pin/326792516690556201/",
                                             "note": "Achilles Battle Cruiser wip2 by ulyses",

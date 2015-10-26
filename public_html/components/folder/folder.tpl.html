@@ -1,10 +1,10 @@
 <div class="folder">
     
-    <a href="#/images/{{folder.id}}">
+    <a href="#/browse-image/{{folder.id}}">
         <span class="folderTitle">{{folder.name}}</span></a><br>
     
     
-    <a href="#/images/{{folder.id}}">
+    <a href="#/browse-images/{{folder.id}}">
     <i class="spacer glyphicon glyphicon-folder-close"></i>
     </a>
     <a href="#" ng-click="$event.preventDefault(); openEditDialog(folder)">
@@ -16,7 +16,8 @@
     <a href="#" ng-click="$event.preventDefault(); openConfirmDialog(folder )">    
     <i  class="spacer glyphicon glyphicon-remove-circle"></i></a>
     
-    
+    <a href="#" ng-click="$event.preventDefault(); openAddImages(folder)">    
+    <i  class="spacer glyphicon glyphicon-plus-sign"></i></a>
     
 </div>
 

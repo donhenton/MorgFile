@@ -1,4 +1,4 @@
-angular.module('app').directive('folder', function (DialogService,FolderService,$log) {
+angular.module('app').directive('folder', function (DialogService, FolderService, $log,$location) {
     //folderItem will be the attribute on the tag called folder
 
 
@@ -16,13 +16,13 @@ angular.module('app').directive('folder', function (DialogService,FolderService,
             {
                 var confirmResult = DialogService.showConfirmDialog("Delete '"
                         + selectedFolderItem.name + "' ?")
-                
+
                 confirmResult.then(function (result) {
                     //$log.debug("result is "+result)
                     if (result == 'confirm')
                     {
                         FolderService.removeFolder(selectedFolderItem);
-                    } 
+                    }
                 });
 
             };
@@ -34,7 +34,13 @@ angular.module('app').directive('folder', function (DialogService,FolderService,
 
             };
 
+            $scope.openAddImages = function (selectedFolderItem)
+            {
 
+                var earl = '/browse-images/' + selectedFolderItem.id;
+                $location.path(earl);
+
+            };
 
         }
     };

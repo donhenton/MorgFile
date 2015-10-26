@@ -1,25 +1,39 @@
+<header class="app-header">
+
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li>
+                <p class="navbar-btn">
+                    <a  ng-click="$event.preventDefault();
+                                main.openAddDialog()" class="btn   btn-default"  href="#/">Add New Folder</a>
+                </p>
+            </li>
+           
+        </ul>
+    </nav>
+</header>
+
+
 <div class="container"> 
-    <br>
-    
-    <div class="row">
-        
-        
-        <button ng-click="main.openAddDialog()" class="btn btn-lg btn-primary">Add a Folder</button>
-        
-        
-    </div>
-<br/>
-    <div class="row col-sm-4"  ng-repeat="item in main.results track by item.id" >
+    <div class="row" ng-if="main.results.length != 0">
+        <h3>Image Folders</h3>
 
-        <folder folder="item" />
+        <div id="folderContainer" class="row col-sm-12 folderContainer">
 
+            <span class="col-sm-4"  ng-repeat="item in main.results track by item.id" >
+
+                <folder folder="item" />
+
+            </span>
+
+        </div>
     </div>
 
     <div class="row" ng-if="main.results.length == 0">
-        
+
         <div class="well well-lg">You have not defined any morgue folders. Click on the Add button</div>
-        
+
     </div>
-    
+
 
 </div>
