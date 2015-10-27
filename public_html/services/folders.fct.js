@@ -12,49 +12,75 @@ function folderService($log)
         "getFolders": getFolders,
         "getFolder": getFolder,
         "removeFolder": removeFolder,
-        "saveFolder": saveFolder
+        "saveFolder": saveFolder,
+        "writeToFolders": writeToFolders,
+        "loadData": loadData
 
 
     };
     var idCounter = 6;
-    var sampleData = [
-        {"name": "sci-fi and space ships", "id": 1,"images":{"google":[],"flickr":[],"pinterest":[]} },
-        {"name": "Fantasy", "id": 2,"images":{"google":[],"flickr":[],"pinterest":[]} },
-        {"name": "Inking Samples", "id": 3,"images":{"google":[],"flickr":[],"pinterest":[]} },
-        {"name": "Anatomy Sample", "id": 4,"images":{"google":[],"flickr":[],"pinterest":[]} },
-        {"name": "Animals and Creature Design", "id": 5,"images":{"google":[],"flickr":[],"pinterest":[]} },
-        {"name": "Character Design", "id": 6,"images":{"google":[],"flickr":[],"pinterest":[]} }
-    ];
+    var folderData = [];
+    
+
+    function loadData()
+    {
+        folderData = [
+            {"name": "Sci-fi and space ships", "id": 1, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Fantasy", "id": 2, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Inking Samples", "id": 3, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Anatomy Sample", "id": 4, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Animals and Creature Design", "id": 5, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Character Design", "id": 6, "images": {"urls": [], "pinterestBoards": []}}
+        ];
+
+    };
+    loadData();
+
+    /*
+     * add urls to the folder data
+     * 
+     * urlType: pinterestBoards, urls
+     * folderSelection: [ folderid1,folderid2...] the folders to send this urls into
+     *  urlEntries: the urls to send in as an array
+     * 
+     * @param {type} data
+     * @returns {undefined}
+     */
+
+    function writeToFolders(data)
+    {
+        $log.debug(angular.toJson(data))
+    };
 
     function createEmptyFolderStructure()
     {
         idCounter = idCounter + 1;
-        var newItem =  {"name": "", "id": idCounter};
+        var newItem = {"name": "", "id": idCounter};
         newItem.images = {};
         newItem.images.google = [];
-        newItem.images.pinterest = [];
+        newItem.images.pinterestBoards = [];
         newItem.images.flickr = [];
-        
+
         return newItem;
-        
-        
+
+
     }
 
     function getFolders() {
-        return sampleData;
+        return folderData;
     }
     function saveFolder(folder) {
-        sampleData.push(folder)
+        folderData.push(folder)
     }
     ;
     function removeFolder(folder)
     {
-        angular.forEach(sampleData, function (value, key)
+        angular.forEach(folderData, function (value, key)
         {
             if (value.id === folder.id)
             {
                 // $log.debug("id is "+value.id)
-                sampleData.splice(key, 1);
+                folderData.splice(key, 1);
 
             }
         });
@@ -62,14 +88,14 @@ function folderService($log)
     function getFolder(id)
     {
         var value = null;
-        for (var i = 0; i < sampleData.length; i++)
+        for (var i = 0; i < folderData.length; i++)
         {
-              if (sampleData[i].id == id)
+            if (folderData[i].id == id)
             {
-                // $log.debug("value "+sampleData[i].id+" id "+id +" "+(sampleData[i].id == id))
-                 value = sampleData[i];
-                 break;
-             }
+                // $log.debug("value "+folderData[i].id+" id "+id +" "+(folderData[i].id == id))
+                value = folderData[i];
+                break;
+            }
         }
         return value;
     }

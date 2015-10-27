@@ -32,15 +32,15 @@
 
 
 
-<form name="pinterestBoards.boardUrlEntryForm" novalidate>
+<form name="loadBoards.boardUrlEntryForm" novalidate>
     <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <label class="control-label">Folder(s) for Urls:</label>
-            <select multiple="true" style="width:100%;height:250px" size="15" name="folderSelections" ng-model="pinterestBoards.newEntry.folderSelections" id="folderSelections" class="form-control" required>
-                <option ng-repeat="folder in pinterestBoards.folders track by folder.id" value="{{folder.id}}">{{folder.name}}</option>
+            <select multiple="true" style="width:100%;height:250px" size="15" name="folderSelections" ng-model="loadBoards.newEntry.folderSelections" id="folderSelections" class="form-control" required>
+                <option ng-repeat="folder in loadBoards.folders track by folder.id" value="{{folder.id}}">{{folder.name}}</option>
             </select>
-            <div class="input-error" ng-messages="pinterestBoards.boardUrlEntryForm.folderSelections.$error">
+            <div class="input-error" ng-messages="loadBoards.boardUrlEntryForm.folderSelections.$error">
                 <div class="message" ng-message="required">This field is required</div>
             </div>
 
@@ -50,13 +50,13 @@
         <div class="form-group">
             <label class="control-label">Add Url One On Each Line</label><br>
 
-            <textarea url-checker="pinterestBoards.invalidUrl" style="width:100%;height:250px" ng-model="pinterestBoards.newEntry.urlEntries"  name="urlEntries" id="urlEntries" required>
+            <textarea url-checker="loadBoards.invalidUrl" style="width:100%;height:250px" ng-model="loadBoards.newEntry.urlEntries"  name="urlEntries" id="urlEntries" required>
                 
             </textarea>
 
-            <div class="input-error" ng-messages="pinterestBoards.boardUrlEntryForm.urlEntries.$error">
+            <div class="input-error" ng-messages="loadBoards.boardUrlEntryForm.urlEntries.$error">
                 <div class="message" ng-message="required">This field is required</div>
-                <div class="message" ng-message=" urlChecker">Invalid url {{pinterestBoards.invalidUrl.url}}</div>
+                <div class="message" ng-message=" urlChecker">Invalid url {{loadBoards.invalidUrl.url}}</div>
                
             </div>
 
@@ -64,6 +64,6 @@
     </div>
     </div>
     <div class="row">
-        <button ng-disabled="pinterestBoards.boardUrlEntryForm.$invalid"  ng-click="pinterestBoards.saveUrls()" class="btn btn-primary">Submit</button>
+        <button ng-disabled="loadBoards.boardUrlEntryForm.$invalid"  ng-click="loadBoards.saveUrls()" class="btn btn-primary">Submit</button>
     </div>
 </form>

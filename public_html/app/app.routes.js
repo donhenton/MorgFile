@@ -10,10 +10,10 @@ function routes($routeProvider) {
                 controllerAs: 'main'
             })
 
-            .when('/pinterest-boards', {
-                templateUrl: 'sections/pinterest-boards/pinterest-boards.tpl.html',
-                controller: 'PinterestBoardsController',
-                controllerAs: 'pinterestBoards',
+            .when('/load-boards', {
+                templateUrl: 'sections/load-boards/load-boards.tpl.html',
+                controller: 'LoadBoardsController',
+                controllerAs: 'loadBoards',
                 resolve: {
                     boardListing: function (BoardsService, $route) {
                         return BoardsService.getBoards($route.current.params.id);
