@@ -1,24 +1,30 @@
 <header class="app-header">
 
-    <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
+    <nav class="navbar">
+        <ul class="nav nav-tabs">
             <li>
-                <p class="navbar-btn">
+                 
                     <a  ng-click="$event.preventDefault();
-                                main.openAddDialog()" class="btn   btn-default"  href="#/">Add New Folder</a>
-                </p>
+                                main.openAddDialog()"    href="#/">Add New Folder</a>
+                 
             </li>
             
             <li>
-                <p class="navbar-btn">
-                    <a   class="btn   btn-default"  href="#/pinterest-boards">Add Board Images To Folders</a>
-                </p>
+                
+                    <a     href="#/pinterest-boards">Add Board To Folders</a>
+                 
             </li>
             
             <li>
-                <p class="navbar-btn">
-                    <a  class="btn   btn-default"   href="#/">Save Changes</a>
-                </p>
+                 
+                    <a      href="#/pinterest-boards">Add Images To Folders</a>
+                 
+            </li>
+            
+            <li class="nav pull-right">
+                 
+                    <a    href="#/">Save Changes</a>
+                
             </li>
            
         </ul>
@@ -28,7 +34,7 @@
 
 <div class="container"> 
     <div class="row" ng-if="main.results.length != 0">
-        <h3>Image Folders</h3>
+        <h3>Morg Folders</h3>
 
         <div id="folderContainer" class="row col-sm-12 folderContainer">
 

@@ -1,18 +1,18 @@
 <header class="app-header">
 
-   
+
 
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="#">Add Pins to Folders</a>
+                <a class="navbar-brand" href="#">Add Pinterest Boards to Folders</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
+
                     <li> <a href="#/">Return To Folder List</a></li>
-                     
+
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -28,6 +28,42 @@
 
 </header>
 
+<h3>Add the urls of Pinterest Boards to Your Folders</h3>
 
 
-board to folder stuff here
+
+<form name="pinterestBoards.boardUrlEntryForm" novalidate>
+    <div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">Folder(s) for Urls:</label>
+            <select multiple="true" style="width:100%;height:250px" size="15" name="folderSelections" ng-model="pinterestBoards.newEntry.folderSelections" id="folderSelections" class="form-control" required>
+                <option ng-repeat="folder in pinterestBoards.folders track by folder.id" value="{{folder.id}}">{{folder.name}}</option>
+            </select>
+            <div class="input-error" ng-messages="pinterestBoards.boardUrlEntryForm.folderSelections.$error">
+                <div class="message" ng-message="required">This field is required</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">Add Url One On Each Line</label><br>
+
+            <textarea url-checker="pinterestBoards.invalidUrl" style="width:100%;height:250px" ng-model="pinterestBoards.newEntry.urlEntries"  name="urlEntries" id="urlEntries" required>
+                
+            </textarea>
+
+            <div class="input-error" ng-messages="pinterestBoards.boardUrlEntryForm.urlEntries.$error">
+                <div class="message" ng-message="required">This field is required</div>
+                <div class="message" ng-message=" urlChecker">Invalid url {{pinterestBoards.invalidUrl.url}}</div>
+               
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <button ng-disabled="pinterestBoards.boardUrlEntryForm.$invalid"  ng-click="pinterestBoards.saveUrls()" class="btn btn-primary">Submit</button>
+    </div>
+</form>
