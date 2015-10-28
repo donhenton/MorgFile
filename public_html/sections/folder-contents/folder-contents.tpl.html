@@ -24,20 +24,35 @@
 
     <uib-tabset>
 
-        <!-- boardItem in folderContents.folder.images.pinterestBoards -->
-        <uib-tab heading="Urls">Static content</uib-tab>
+
+        <uib-tab heading="Urls">
+
+            <br>
+            <div deckgrid class="deckgrid" source="folderContents.cards">
+                <div class="a-card thumbnail">
+                     
+                    <a target="_new" href="{{card.src}}">
+                    <img  src="" data-ng-src="{{card.src}}">
+                    </a>
+                </div>
+            </div>
+
+
+
+
+        </uib-tab>
 
         <uib-tab heading="Pinterest Boards" select="folderContents.refreshBoards()">
             <br>
             <div class="col-sm-offset-3 col-sm-6">
 
-            <uib-carousel interval="-1" no-wrap="false">
-                <uib-slide ng-repeat="slide in folderContents.slides" active="slide.active">
-                     
-                    <image-widget type="board" image="slide.image" />
-                </uib-slide>
+                <uib-carousel interval="-1" no-wrap="false">
+                    <uib-slide ng-repeat="slide in folderContents.slides" active="slide.active">
 
-            </uib-carousel>
+                        <image-widget type="board" image="slide.image" />
+                    </uib-slide>
+
+                </uib-carousel>
 
             </div>
 

@@ -3,6 +3,7 @@ angular.module('app').controller('FolderContentsController',
             var vm = this;
             vm.folder = folderItem.folder;
             vm.slides = [];
+            vm.cards = [];
 
             for (var i = 0; i < vm.folder.images.pinterestBoards.length; i++)
             {
@@ -12,6 +13,17 @@ angular.module('app').controller('FolderContentsController',
                 vm.slides.push(slide);
 
             }
+            
+            for (var i = 0; i < vm.folder.images.urls.length; i++)
+            {
+                var card = {};
+                 
+                card["src"] = vm.folder.images.urls[i];
+                
+                vm.cards.push(card);
+
+            }
+            
 
             vm.refreshBoards = function ()
             {
@@ -39,7 +51,7 @@ angular.module('app').controller('FolderContentsController',
                 }
             }, function (currentSlide, previousSlide) {
                 if (currentSlide !== previousSlide) {
-                    // console.log('currentSlide: '+ angular.toJson(  currentSlide));
+                    
                     vm.refreshBoards();
                 }
             });
