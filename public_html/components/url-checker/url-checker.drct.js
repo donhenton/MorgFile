@@ -2,7 +2,7 @@
  * angular directive that will check if a collection of entries in 
  * a url entry textarea meet a url checking regex. Reports the url current
  * url in error at controller. in the form of vm.invalidUrl = {"url": "fred"};
- * see load-boards.ctl
+ * see load-folders.ctl
  */
 
 angular.module('app').directive('urlChecker', function ($log, $timeout) {

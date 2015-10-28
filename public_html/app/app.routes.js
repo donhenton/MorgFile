@@ -10,15 +10,12 @@ function routes($routeProvider) {
                 controllerAs: 'main'
             })
 
-            .when('/load-boards', {
-                templateUrl: 'sections/load-boards/load-boards.tpl.html',
-                controller: 'LoadBoardsController',
-                controllerAs: 'loadBoards',
+            .when('/load-folders/:type', {
+                templateUrl: 'sections/load-folders/load-folders.tpl.html',
+                controller: 'LoadFoldersController',
+                controllerAs: 'loadFolders',
                 resolve: {
-                    boardListing: function (BoardsService, $route) {
-                        return BoardsService.getBoards($route.current.params.id);
-
-                    }
+                   type: function($route) { return $route.current.params.type}
 
                 }
             })
