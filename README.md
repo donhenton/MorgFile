@@ -6,3 +6,7 @@ this reference can be used for slot to call pin rebuild after all pins
 completed for page
 
 http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
+
+
+deviant art api info
+http://taha.vasowalla.com/DeviantArtAPI.html

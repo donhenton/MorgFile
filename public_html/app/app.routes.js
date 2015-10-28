@@ -9,13 +9,37 @@ function routes($routeProvider) {
                 controller: 'MainController',
                 controllerAs: 'main'
             })
+            .when('/folder-contents/:id', {
+                templateUrl: 'sections/folder-contents/folder-contents.tpl.html',
+                controller: 'FolderContentsController',
+                controllerAs: 'folderContents',
+                resolve: {
+                    folderItem: function (FolderService, $route,$log) {
+                        
+                        var folderData = 
+                                {
+                            "folder": 
+                              FolderService.getFolder($route.current.params.id)
+                        };
+                        
+                       
+                        
+                        return folderData;
+                    }
+
+                }
+
+
+            })
 
             .when('/load-folders/:type', {
                 templateUrl: 'sections/load-folders/load-folders.tpl.html',
                 controller: 'LoadFoldersController',
                 controllerAs: 'loadFolders',
                 resolve: {
-                   type: function($route) { return $route.current.params.type}
+                    type: function ($route) {
+                        return $route.current.params.type
+                    }
 
                 }
             })
@@ -25,12 +49,11 @@ function routes($routeProvider) {
                 controller: 'BrowseImagesController',
                 controllerAs: 'browseImages',
                 resolve: {
-                    images: function (FolderService,$route) {
+                    images: function (FolderService, $route) {
 
                         return {
-                                "folder": FolderService.getFolder($route.current.params.id),
-                            
-                                "data":
+                            "folder": FolderService.getFolder($route.current.params.id),
+                            "data":
                                     [{
                                             "url": "https://www.pinterest.com/pin/326792516690556201/",
                                             "note": "Achilles Battle Cruiser wip2 by ulyses",

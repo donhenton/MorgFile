@@ -24,9 +24,24 @@ function folderService($log)
 
     function loadData()
     {
+        
+        var boardData = [
+            
+            "https://www.pinterest.com/megazoid4500/painting/",
+             "https://www.pinterest.com/megazoid4500/space-ships/",
+            "https://www.pinterest.com/megazoid4500/inking-study/",
+            "https://www.pinterest.com/megazoid4500/character-design/",
+            "https://www.pinterest.com/megazoid4500/space-suits/",
+            "https://www.pinterest.com/megazoid4500/majipoor/",
+            "https://www.pinterest.com/megazoid4500/syd-mead/",
+            "https://www.pinterest.com/megazoid4500/robots/",
+            "https://www.pinterest.com/megazoid4500/my-work/" 
+            
+        ];
+        
         folderData = [
-            {"name": "Sci-fi and space ships", "id": 1, "images": {"urls": [], "pinterestBoards": []}},
-            {"name": "Fantasy", "id": 2, "images": {"urls": [], "pinterestBoards": []}},
+            {"name": "Sci-fi and space ships", "id": 1, "images": {"urls": [], "pinterestBoards": boardData}},
+            {"name": "Fantasy", "id": 2, "images": {"urls": [], "pinterestBoards": boardData}},
             {"name": "Inking Samples", "id": 3, "images": {"urls": [], "pinterestBoards": []}},
             {"name": "Anatomy Sample", "id": 4, "images": {"urls": [], "pinterestBoards": []}},
             {"name": "Animals and Creature Design", "id": 5, "images": {"urls": [], "pinterestBoards": []}},
@@ -34,6 +49,10 @@ function folderService($log)
         ];
 
     };
+    
+    
+    
+    
     loadData();
 
     /*
