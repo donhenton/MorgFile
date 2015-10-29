@@ -5,6 +5,7 @@ angular.module('app').controller('EditFolderController',
             vm.newEntry = {};
             vm.invalidUrl = {"url": ""};
             vm.invalidBoard = {"url": ""};
+            vm.generalEntryForm = {};
             
 
             /**
@@ -50,20 +51,29 @@ angular.module('app').controller('EditFolderController',
 
                 return returnString;
             }
-
+//editFolder.generalEntryForm.$invalid
 
             vm.newEntry.urls = toDataDisplay(vm.folder.images.urls);
             vm.newEntry.pinterestBoards = toDataDisplay(vm.folder.images.pinterestBoards);
             vm.newEntry.name = vm.folder.name;
+            vm.newEntry.id = vm.folder.id;
 
             vm.saveChanges = function ()
             {
-                   
-                 //  FolderService.completeEdit(vm.folder.id,vm.newEntry);
+                 // $log.debug(vm.generalEntryForm.$invalid)  
+                 FolderService.completeEdit(vm.newEntry);
 
             }
 
-
+            /**
+             * conditional for allowing form submit button
+             * @returns {Boolean}
+             */
+            vm.formDisabled = function()
+            {
+                
+                return true;
+            }
 
 
         });

@@ -29,7 +29,7 @@ angular.module('app').controller('LoadFoldersController',
                     entryCopy.urlType = "urls";
                 }
 
-                FolderService.bulkWriteToFolders(entryCopy)
+                FolderService.bulkAddToFolders(entryCopy)
                 //$log.debug(info);
                 //{"folderSelections":["1","2","6"],"urlEntries":"http://fred,\nhttp://ned,\nhttp://zed"} 
             }

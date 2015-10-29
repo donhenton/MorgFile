@@ -28,7 +28,7 @@
 <form name="editFolder.generalEntryForm" novalidate>
     
     <div class="row">
-        <button ng-disabled="editFolder.generalEntryForm.$invalid"  ng-click="editFolder.saveChanges()" class="btn btn-primary">Submit</button>
+        <button ng-click="editFolder.saveChanges()" class="btn btn-primary">Submit</button>
     </div>
     
     
@@ -39,6 +39,14 @@
             <div class="col-sm-12">
                 <input type="text" class="form-control"  id="name" name="name" ng-model="editFolder.newEntry.name" required>
             </div>
+            
+            
+            <div class="input-error" ng-messages="editFolder.generalEntryForm.name.$error">
+                    <div class="message" ng-message="required">This field is required</div>
+                     
+
+                </div>
+            
         </div>
          </div>
    
@@ -56,12 +64,7 @@
                 <textarea url-checker="editFolder.invalidUrl" style="width:100%;height:250px" ng-model="editFolder.newEntry.urls"  name="urlEntries" id="urlEntries" required>
                 
                 </textarea>
-
-                <div class="input-error" ng-messages="editFolder.generalEntryForm.urlEntries.$error">
-                    <div class="message" ng-message="required">This field is required</div>
-                    <div class="message" ng-message=" urlChecker">Invalid url {{editFolder.invalidUrl.url}}</div>
-
-                </div>
+ 
 
             </div>
         </div>
@@ -73,11 +76,7 @@
                 
                 </textarea>
 
-                <div class="input-error" ng-messages="editFolder.generalEntryForm.urlEntries.$error">
-                    <div class="message" ng-message="required">This field is required</div>
-                    <div class="message" ng-message=" urlChecker">Invalid url {{editFolder.invalidBoard.url}}</div>
-
-                </div>
+               
 
             </div>
         </div>

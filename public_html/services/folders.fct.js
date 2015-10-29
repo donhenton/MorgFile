@@ -13,7 +13,8 @@ function folderService($log)
         "getFolder": getFolder,
         "removeFolder": removeFolder,
         "saveFolder": saveFolder,
-        "bulkWriteToFolders": bulkWriteToFolders,
+        "bulkAddToFolders": bulkAddToFolders,
+        "completeEdit": completeEdit,
         "loadData": loadData
 
 
@@ -79,13 +80,30 @@ function folderService($log)
      * @returns {undefined}
      */
 
-    function bulkWriteToFolders(data)
+    function bulkAddToFolders(dataToAdd)
     {
-        if (typeof data.newName != 'undefined')
+        
+        for (var i = 0; i < dataToAdd.folderSelection.length; i++)
         {
-            //write newName to folder name
+
+            var targetFolder = getFolder(dataToAdd.folderSelection[i]);
+            if (targetFolder !== null)
+            {
+                var loadTarget = targetFolder.images.urls;
+                if (dataToAdd.urlType === 'pinterestBoards')
+                {
+                    loadTarget = targetFolder.images.pinterestBoards;
+
+                }
+
+                loadTarget.push(dataToAdd.urlEntries);
+
+
+            }
+           
+
         }
-       // $log.debug(angular.toJson(data))
+ 
     }
     ;
 
@@ -135,6 +153,44 @@ function folderService($log)
             }
         }
         return value;
+    }
+
+
+
+    /**
+     * data 
+     *     urls comma separated urls list should replace current list
+     *     pinterestBoards comma separatged list should replace current list
+     *     name folder name
+     *     id folder id
+     *     
+     * @param {type} data
+     * @returns {undefined}
+     */
+    function completeEdit(data)
+    {
+        var folderIdx = -1;
+        for (var i = 0; i < folderData.length; i++)
+        {
+            if (data.id === folderData[i].id)
+            {
+                folderIdx = i;
+                break;
+            }
+        }
+
+        if (folderIdx > -1)
+        {
+
+            var currentFolder = folderData[i];
+            currentFolder.name = data.name;
+            currentFolder.images.urls = data.urls;
+            currentFolder.images.pinterestBoards = data.pinterestBoards;
+
+        }
+
+
+
     }
 
     return data;
