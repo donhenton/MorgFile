@@ -1,3 +1,9 @@
+/**
+ * a collection of shared utility routines
+ * 
+ * @param {type} param1
+ * @param {type} param2
+ */
 angular
         .module('app.services')
         .factory('UtilityService', utilService);
