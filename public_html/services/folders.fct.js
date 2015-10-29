@@ -13,7 +13,7 @@ function folderService($log)
         "getFolder": getFolder,
         "removeFolder": removeFolder,
         "saveFolder": saveFolder,
-        "writeToFolders": writeToFolders,
+        "bulkWriteToFolders": bulkWriteToFolders,
         "loadData": loadData
 
 
@@ -26,6 +26,7 @@ function folderService($log)
     {
 
         var boardData = [
+            "https://www.pinterest.com/MrsPaterson1/windows-doorways/",
             "https://www.pinterest.com/megazoid4500/painting/",
             "https://www.pinterest.com/megazoid4500/space-ships/",
             "https://www.pinterest.com/megazoid4500/inking-study/",
@@ -69,17 +70,22 @@ function folderService($log)
     /*
      * add urls to the folder data
      * 
-     * urlType: pinterestBoards, urls
-     * folderSelection: [ folderid1,folderid2...] the folders to send this urls into
+     *  urlType: pinterestBoards, urls
+     *  folderSelection: [ folderid1,folderid2...] the folders to send this urls into
      *  urlEntries: the urls to send in as an array
+     *  bulk load
      * 
      * @param {type} data
      * @returns {undefined}
      */
 
-    function writeToFolders(data)
+    function bulkWriteToFolders(data)
     {
-        $log.debug(angular.toJson(data))
+        if (typeof data.newName != 'undefined')
+        {
+            //write newName to folder name
+        }
+       // $log.debug(angular.toJson(data))
     }
     ;
 

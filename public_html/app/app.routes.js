@@ -31,7 +31,28 @@ function routes($routeProvider) {
 
 
             })
+             .when('/edit-folder/:id', {
+                templateUrl: 'sections/edit-folder/edit-folder.tpl.html',
+                controller: 'EditFolderController',
+                controllerAs: 'editFolder',
+                resolve: {
+                    folderItem: function (FolderService, $route,$log) {
+                        
+                        var folderData = 
+                                {
+                            "folder": 
+                              FolderService.getFolder($route.current.params.id)
+                        };
+                        
+                       
+                        
+                        return folderData;
+                    }
 
+                }
+
+
+            })
             .when('/load-folders/:type', {
                 templateUrl: 'sections/load-folders/load-folders.tpl.html',
                 controller: 'LoadFoldersController',

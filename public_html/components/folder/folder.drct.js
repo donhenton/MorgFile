@@ -27,20 +27,8 @@ angular.module('app').directive('folder', function (DialogService, FolderService
 
             };
 
-            $scope.openEditDialog = function (selectedFolderItem)
-            {
-
-                DialogService.showFolderDialog(selectedFolderItem);
-
-            };
-
-            $scope.openAddImages = function (selectedFolderItem)
-            {
-
-                var earl = '/browse-images/' + selectedFolderItem.id;
-                $location.path(earl);
-
-            };
+          
+ 
 
         }
     };

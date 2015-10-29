@@ -3,7 +3,7 @@ angular.module('app').controller('LoadFoldersController',
             var vm = this;
             vm.folders = FolderService.getFolders();
             // vm.newEntry = {"boardSelections":{},"urlEntries":[]}
-            vm.newEntry = {};
+            vm.newEntry = {};   
             vm.invalidUrl = {"url": ""};
             vm.type = type;
             vm.headerDescription = "Add Image Urls to Folders"
@@ -29,7 +29,7 @@ angular.module('app').controller('LoadFoldersController',
                     entryCopy.urlType = "urls";
                 }
 
-                FolderService.writeToFolders(entryCopy)
+                FolderService.bulkWriteToFolders(entryCopy)
                 //$log.debug(info);
                 //{"folderSelections":["1","2","6"],"urlEntries":"http://fred,\nhttp://ned,\nhttp://zed"} 
             }
