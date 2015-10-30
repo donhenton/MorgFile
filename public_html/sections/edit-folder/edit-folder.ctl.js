@@ -6,62 +6,66 @@ angular.module('app').controller('EditFolderController',
             vm.invalidUrl = {"url": ""};
             vm.invalidBoard = {"url": ""};
             vm.generalEntryForm = {};
-            
+            vm.feedbackMessage = null;
+
 
             /**
-             * take comma separated items and return the items
-             * split and marked with a carriage return
+             * take an array of urls and return a string
+             * with a carriage return at the end of an array item
+             *  
              * 
-             * @param {type} arrayItems
+             * @param {type} arrayOfUrls
              * @returns {undefined}
              */
-            function toDataDisplay(items)
+            function toDataDisplay(arrayOfUrls)
             {
-                var returnString = "";
-                items = items + "";
-                var itemsArray = items.split(',');
-                for (var i = 0; i < itemsArray.length; i++)
+                
+                var returnString =  ""
+                for (var i=0;i<arrayOfUrls.length;i++)
                 {
-
-                    returnString = returnString + itemsArray[i] + "\n";
-
+                    returnString = returnString +arrayOfUrls[i]+"\n";
                 }
-
                 return returnString;
             }
 
             /**
              * take carriage return items and 
-             * replace carriage return with a comma
+             * returns an array suitable for saving
              * 
-             * @param {type} arrayItems
+             * @param {type} items
              * @returns {undefined}
              */
             function fromDataDisplay(items)
             {
-                var returnString = "";
                 items = items + "";
-                var itemsArray = items.split(/[\n\r]+/g)
-                for (var i = 0; i < itemsArray.length; i++)
-                {
-
-                    returnString = returnString + itemsArray[i] + ",";
-
-                }
-
-                return returnString;
+                var urlArray = items.split(/[\n]/g);
+                return urlArray;
             }
 //editFolder.generalEntryForm.$invalid
+
 
             vm.newEntry.urls = toDataDisplay(vm.folder.images.urls);
             vm.newEntry.pinterestBoards = toDataDisplay(vm.folder.images.pinterestBoards);
             vm.newEntry.name = vm.folder.name;
             vm.newEntry.id = vm.folder.id;
 
+            vm.clearMessage = function()
+            {
+                vm.feedbackMessage = null;
+                
+            }
+
             vm.saveChanges = function ()
             {
-                 // $log.debug(vm.generalEntryForm.$invalid)  
-                 FolderService.completeEdit(vm.newEntry);
+                // $log.debug(vm.generalEntryForm.$invalid)  
+                var saveData = {};
+
+                saveData.urls = fromDataDisplay(vm.newEntry.urls);
+                saveData.pinterestBoards = fromDataDisplay(vm.newEntry.pinterestBoards);
+                saveData.name = vm.folder.name;
+                saveData.id = vm.folder.id;
+                FolderService.completeEdit(saveData);
+                vm.feedbackMessage = "Changes saved!"
 
             }
 
@@ -69,9 +73,9 @@ angular.module('app').controller('EditFolderController',
              * conditional for allowing form submit button
              * @returns {Boolean}
              */
-            vm.formDisabled = function()
+            vm.formDisabled = function ()
             {
-                
+
                 return true;
             }
 
