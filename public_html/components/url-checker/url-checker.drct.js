@@ -21,9 +21,11 @@ angular.module('app').directive('urlChecker', function ($log, $timeout, UtilityS
 
         link: function (scope, element, attrs, $ctrl) {
             $ctrl.$validators.urlChecker = function (urls) {
+                //urls is the contents of the text area,
+                //so it is \n terminated list of strings
                 
                 var valReturn =
-                UtilityService.checkUrlArray(urls);
+                UtilityService.checkUrlList(urls);
                 if (valReturn.fail)
                 {
                     scope.urlChecker.url = valReturn.url;

@@ -12,10 +12,10 @@ angular
 function utilService()
 {
     var data = {
-        
         "isUrlOkay": isUrlOkay,
+        "checkUrlList": checkUrlList,
         "checkUrlArray": checkUrlArray
-    
+
     };
 
     /**
@@ -32,27 +32,25 @@ function utilService()
 
     }
 
-/**
- * check that an array of strings are all urls. if one of them is
- * not a string, then return false and include the failing url.
- * @param {type} array
- * @returns {utilService.checkUrlArray.returnInfo|Boolean}
- */
-    function checkUrlArray(array)
+    /**
+     * check that an array of strings are all urls. if one of them is
+     * not a string, then return false and include the failing url.
+     * @param {type} urls
+     * @returns {utilService.checkUrlArray.returnInfo|Boolean}
+     */
+    function checkUrlArray(urls)
     {
-          var returnInfo = {"url": null, "fail":false};
+        var returnInfo = {"url": null, "fail": false};
+        if (typeof urls !== 'undefined') {
 
 
-        if (typeof array !== 'undefined') {
-
-            var urls = array.split(/[\n]/g);
             var currentUrl;
-  
+
             for (var i = 0; i < urls.length; i++)
             {
 
                 currentUrl = urls[i]
-                if (!isUrlOkay(urls[i]))
+                if (!isUrlOkay(urls[i]) && urls[i])
                 {
 
                     returnInfo.url = urls[i];
@@ -65,12 +63,30 @@ function utilService()
 
 
         }
-        
+
         returnInfo.fail = true;
         return returnInfo;
 
+    }
+
+
+    /**
+     * 
+     * @param {type} listOfUrls a list of urls each terminated by '\n'
+     * @returns {utilService.checkUrlList.returnInfo}
+     */
+    function checkUrlList(listOfUrls)
+    {
+        
+        var urls = listOfUrls.split(/[\n]/g);
+        return checkUrlArray(urls);
+
 
     }
+
+
+
+
 
 
     return data;
