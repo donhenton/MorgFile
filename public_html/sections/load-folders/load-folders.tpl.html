@@ -11,11 +11,11 @@
 
             </li>
 
-            
+
 
             <li class="nav pull-right">
 
-             <a href="#/">Return To Folder List</a> 
+                <a href="#/">Return To Folder List</a> 
 
             </li>
 
@@ -28,10 +28,13 @@
 
 </header>
 
- 
 
 
-
+<div class="row">
+    <div class="col-sm-12">
+        <span ng-if="loadFolders.feedbackMessage != null" class="message success">{{loadFolders.feedbackMessage}}</span>
+    </div>
+</div>
 <form name="loadFolders.boardUrlEntryForm" novalidate>
     <div class="row">
         <div class="col-sm-6">

@@ -7,6 +7,14 @@ angular.module('app').controller('LoadFoldersController',
             vm.invalidUrl = {"url": ""};
             vm.type = type;
             vm.headerDescription = "Add Image Urls to Folders"
+            vm.feedbackMessage = "";
+            
+            vm.clearMessage = function ()
+            {
+                vm.feedbackMessage = "";
+
+            }
+            
 
             if (vm.type === 'boards')
             {
@@ -22,7 +30,7 @@ angular.module('app').controller('LoadFoldersController',
                 entryCopy.urlEntries = entryCopy.urlEntries.split(/[\n\r]+/g);
                 if (vm.type === 'boards')
                 {
-                    entryCopy.urlType = "pinerestBoards";
+                    entryCopy.urlType = "pinterestBoards";
                 }
                 else
                 {
@@ -32,6 +40,9 @@ angular.module('app').controller('LoadFoldersController',
                 FolderService.bulkAddToFolders(entryCopy)
                 //$log.debug(info);
                 //{"folderSelections":["1","2","6"],"urlEntries":"http://fred,\nhttp://ned,\nhttp://zed"} 
+                vm.feedbackMessage = "Changes saved!";
+                vm.newEntry = {};
+                
             }
 
 

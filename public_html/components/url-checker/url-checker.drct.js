@@ -23,6 +23,14 @@ angular.module('app').directive('urlChecker', function ($log, $timeout, UtilityS
             $ctrl.$validators.urlChecker = function (urls) {
                 //urls is the contents of the text area,
                 //so it is \n terminated list of strings
+                if (typeof urls === 'undefined')
+                {
+                    
+                    // arriving in bulk load area with an empty list
+                    scope.urlChecker.url ="";
+                    return true;
+                }
+                
                 
                 var valReturn =
                 UtilityService.checkUrlList(urls);

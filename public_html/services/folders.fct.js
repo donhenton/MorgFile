@@ -82,28 +82,27 @@ function folderService($log)
 
     function bulkAddToFolders(dataToAdd)
     {
-        
-        for (var i = 0; i < dataToAdd.folderSelection.length; i++)
+
+        for (var i = 0; i < dataToAdd.folderSelections.length; i++)
         {
 
-            var targetFolder = getFolder(dataToAdd.folderSelection[i]);
+            var targetFolder = getFolder(dataToAdd.folderSelections[i]);
             if (targetFolder !== null)
             {
                 var loadTarget = targetFolder.images.urls;
                 if (dataToAdd.urlType === 'pinterestBoards')
                 {
-                    loadTarget = targetFolder.images.pinterestBoards;
-
+                    
+                  targetFolder.images.pinterestBoards.push.apply;
                 }
-
-                loadTarget.push(dataToAdd.urlEntries);
-
+                 
+                loadTarget.push.apply(loadTarget, dataToAdd.urlEntries);
 
             }
-           
+
 
         }
- 
+
     }
     ;
 
