@@ -106,6 +106,10 @@ function folderService($log)
     }
     ;
 
+/**
+ * create an empty folder structure
+ * @returns {folderService.createEmptyFolderStructure.newItem}
+ */
     function createEmptyFolderStructure()
     {
         idCounter = idCounter + 1;
