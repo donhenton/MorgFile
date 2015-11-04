@@ -93,7 +93,7 @@ function folderService($log)
                 if (dataToAdd.urlType === 'pinterestBoards')
                 {
                     
-                  targetFolder.images.pinterestBoards.push.apply;
+                  loadTarget = targetFolder.images.pinterestBoards;
                 }
                  
                 loadTarget.push.apply(loadTarget, dataToAdd.urlEntries);
