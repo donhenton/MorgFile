@@ -24,7 +24,8 @@ function folderService($log, $http)
     var idCounter = -1;
     var folderData = null;
     var localData = null;
-    var g_morgueUrlBase ="http://donhenton-node.herokuapp.com/morguefile/";
+    //var g_morgueUrlBase ="http://donhenton-node.herokuapp.com/morguefile/"; //NO CORS at this time
+    var g_morgueUrlBase ="http://localhost:3000/morguefile/";
 
     function saveData(changedFolders)
     {
