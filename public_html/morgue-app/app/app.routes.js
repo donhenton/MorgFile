@@ -3,6 +3,7 @@ angular
         .config(routes);
 
 function routes($routeProvider,FOLDER_PREFIX) {
+   
     $routeProvider.
             when('/', {
                 templateUrl: FOLDER_PREFIX +  'sections/main/main.tpl.html',
@@ -69,4 +70,6 @@ function routes($routeProvider,FOLDER_PREFIX) {
             .otherwise({
                 redirectTo: '/'
             });
+            
+           
 }
