@@ -54,31 +54,16 @@ describe("controllers/controller_tests.js", function () {
         beforeEach(function ()
         {
             module('app');
-           // module('templates');
 
-            //define mock services
-             
-//             module(function ($provide) {
-//                $provide.service('UtilityService', function () {
-//                    this.isUrlOkay = jasmine.createSpy('isUrlOkay').andCallFake(function (num) {
-//                        //a fake implementation
-//                    });
-//                    this.checkUrlArray = jasmine.createSpy('checkUrlArray').andCallFake(function (urlArray) {
-//                        //a fake implementation
-//                    });
-//                });
-//            });
-            
- 
-
-            inject(function ($controller, $rootScope,UtilityService) {
+            inject(function ($controller, $rootScope, UtilityService, FolderService) {
                 var parentScope = $rootScope.$new();
                 editController =
                         $controller('EditFolderController', {$scope: parentScope.$new(),
                             folderItem: sampleFolder});
                 utilityServiceRef = UtilityService;
+                folderServiceRef = FolderService;
                 //spyOn(utilityServiceRef,'isUrlOkay').and.callFake(function(u){return true})
-                
+
 
             });
         });
@@ -91,27 +76,43 @@ describe("controllers/controller_tests.js", function () {
         it('jasmine should be available', function () {
             expect(typeof spyOn === 'undefined').toBe(false);
         });
-        
+
         it('utilityService is not null', function () {
             expect(typeof utilityServiceRef === 'undefined').toBe(false);
         });
-        
+
         it('can make calls on UtilityService', function () {
-            var testurl = "http://www.fred.com";       
+            var testurl = "http://www.fred.com";
             expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
-            
-        })
-        
+
+        });
+        it('spys on a service force results', function () {
+            spyOn(utilityServiceRef, 'isUrlOkay').and.callFake(function (u) {
+                return true
+            });
+            var testurl = "http://www.fred.com";
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+
+            testurl = "www.fred.com";
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+
+            testurl = "bpmodfg";
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+
+        });
+
+     
+
         it('test isUrlOkay', function () {
-            var testurl = "http://www.fred.com";       
+            var testurl = "http://www.fred.com";
             expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
-            
-            testurl = "www.fred.com";       
+
+            testurl = "www.fred.com";
             expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
-            
-             testurl = "bpmodfg";       
+
+            testurl = "bpmodfg";
             expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(false);
-            
+
         })
 
     })
