@@ -1,9 +1,17 @@
 /* global expect */
 
+//mocking service, providers, etc .... http://www.sitepoint.com/mocking-dependencies-angularjs-tests/
+//mocking a form http://stackoverflow.com/questions/25022663/how-to-unit-test-angular-form
+//jasmine spy
+
+
 describe("controllers/controller_tests.js", function () {
 
 
     var sampleFolder = {}
+    var editController;
+    var utilityServiceRef;
+    var folderServiceRef;
     sampleFolder.folder =
             {
                 "name": "Space Ships",
@@ -26,44 +34,86 @@ describe("controllers/controller_tests.js", function () {
                         "https://www.pinterest.com/pin/432416001700829194/",
                         "https://www.pinterest.com/pin/523965737868023562/",
                         "https://www.pinterest.com/pin/525021269033690583/",
-                        "https://www.pinterest.com/pin/3096293464750064/",
-                        ""
+                        "https://www.pinterest.com/pin/3096293464750064/"
+
                     ],
                     "pinterestBoards": [
                         "https://www.pinterest.com/shanewarild/space-gear/",
                         "https://www.pinterest.com/zarquonquintus/art-of-peter-elson/",
                         "https://www.pinterest.com/DjVaderman/john-harris-art/",
                         "https://www.pinterest.com/chrisArnol/spaceship-inspiration/",
-                        "https://www.pinterest.com/lycrin/battletech/",
-                        ""
+                        "https://www.pinterest.com/lycrin/battletech/"
+
                     ]
                 }
             };
 
 
+    describe('edit controller tests', function () {
 
+        beforeEach(function ()
+        {
+            module('app');
+           // module('templates');
 
-    beforeEach(function ()
-    {
-        module('app');
+            //define mock services
+             
+//             module(function ($provide) {
+//                $provide.service('UtilityService', function () {
+//                    this.isUrlOkay = jasmine.createSpy('isUrlOkay').andCallFake(function (num) {
+//                        //a fake implementation
+//                    });
+//                    this.checkUrlArray = jasmine.createSpy('checkUrlArray').andCallFake(function (urlArray) {
+//                        //a fake implementation
+//                    });
+//                });
+//            });
+            
+ 
 
+            inject(function ($controller, $rootScope,UtilityService) {
+                var parentScope = $rootScope.$new();
+                editController =
+                        $controller('EditFolderController', {$scope: parentScope.$new(),
+                            folderItem: sampleFolder});
+                utilityServiceRef = UtilityService;
+                //spyOn(utilityServiceRef,'isUrlOkay').and.callFake(function(u){return true})
+                
 
-        inject(function ($controller) {
-            var scope = {};
-
-
-
-
-
-            $controller('EditFolderController', {$scope: scope, folderItem: sampleFolder});
-
+            });
         });
-    });
 
 
-    it('controller', function () {
-        expect(3).toEqual(3);
-    });
+        it('controller assignment should not be null', function () {
+            expect(editController === null).toBe(false)
+        });
 
+        it('jasmine should be available', function () {
+            expect(typeof spyOn === 'undefined').toBe(false);
+        });
+        
+        it('utilityService is not null', function () {
+            expect(typeof utilityServiceRef === 'undefined').toBe(false);
+        });
+        
+        it('can make calls on UtilityService', function () {
+            var testurl = "http://www.fred.com";       
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+            
+        })
+        
+        it('test isUrlOkay', function () {
+            var testurl = "http://www.fred.com";       
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+            
+            testurl = "www.fred.com";       
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(true);
+            
+             testurl = "bpmodfg";       
+            expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(false);
+            
+        })
+
+    })
 
 });

@@ -8,6 +8,9 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
         // list of files / patterns to load in the browser
         files: [
+            'public_html/jasmine/json2.js',
+            'public_html/jasmine/jasmine.js',
+            
             'public_html/morgue-app/assets/js/messagePump.js',
             'public_html/morgue-app/assets/pinterest/pinit_test.js',
             'public_html/morgue-app/assets/js/jquery/dist/jquery.min.js',
