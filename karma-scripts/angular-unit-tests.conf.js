@@ -36,7 +36,9 @@ module.exports = function (config) {
             'public_html/morgue-app/components/url-checker/url-checker.drct.js',
             'public_html/morgue-app/components/folder/folder.drct.js',
             'public_html/morgue-app/components/image-widget/image-widget.drct.js',
-            'test/unit_tests/*.js'
+                       'public_html/morgue-app/assets/js/angular-mocks/angular-mocks.js',
+ 
+            'test/unit_tests/**/*.js'
 
         ],
         htmlReporter: {
@@ -45,10 +47,16 @@ module.exports = function (config) {
         },
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-//        preprocessors: {
-//            
-//            'test/unit_test/**_tests.js': ['coverage']
-//        },
+        preprocessors: {
+             
+             'public_html/morgue-app/components/*.js': ['coverage'],
+             'public_html/morgue-app/sections/*.js': ['coverage'],
+             'public_html/morgue-app/services/*.js': ['coverage'],
+             'public_html/morgue-app/app/*.js': ['coverage'],
+             
+             
+             
+         },
         junitReporter: {
             outputFile: 'reports/junit/karma-test-results.xml',
             suite: 'Unit Tests'

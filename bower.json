@@ -4,7 +4,7 @@
   "authors": [
     "d <dhenton@localhost.com>"
   ],
-  "description": "packt pub angular video code",
+  "description": "morgue file application",
   "moduleType": [
     "amd"
   ],
@@ -31,6 +31,7 @@
     "angular-animate": "~1.4.7",
     "angular-local-storage": "~0.2.3",
     "angular-messages": "~1.4.7",
-    "angular-deckgrid": "~0.5.0"
+    "angular-deckgrid": "~0.5.0",
+    "angular-mocks": "~1.4.7"
   }
 }
