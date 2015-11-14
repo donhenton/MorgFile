@@ -86,9 +86,9 @@ describe("controllers/controller_tests.js", function () {
          * this might be used to compose a form and submit it to the controller
          * but it doesn't seem to work
          * @returns {undefined}
-         */
+        
         it('form should exist', function () {
-             
+
             var templateHtml = templateCacheRef.get('public_html/' +
                     'morgue-app/sections/edit-folder/edit-folder.tpl.html')
 
@@ -100,10 +100,11 @@ describe("controllers/controller_tests.js", function () {
             scopeRef.$apply()
             expect(editForm.$valid).toBeFalsy();
             //editForm.name.$setViewValue('BANANA');
-            console.log(editForm)
+           // console.log(editForm)
 
 
         });
+         */
         ////////////////////////////////////////////////////////////
 
         it('controller assignment should not be null', function () {
