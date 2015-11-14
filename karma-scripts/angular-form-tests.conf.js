@@ -13,6 +13,7 @@ module.exports = function (config) {
             'public_html/morgue-app/assets/js/angular/angular.min.js',
             'public_html/form_test/app.js',
             'public_html/form_test/form.tpl.html',
+            'public_html/morgue-app/assets/js/angular-mocks/angular-mocks.js',
             'test/form_tests/**/*.js'
 
         ],
