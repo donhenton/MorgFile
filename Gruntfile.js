@@ -15,8 +15,11 @@ module.exports = function (grunt) {
             unit_tests: {
                 configFile: 'karma-scripts/angular-unit-tests.conf.js',
                 singleRun: true
+            },
+            form_tests: {
+                configFile: 'karma-scripts/angular-form-tests.conf.js',
+                singleRun: true
             }
-
 
         }
 
@@ -25,7 +28,8 @@ module.exports = function (grunt) {
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.registerTask('runAngular-unit-tests', ['karma:unit_tests']);
+    grunt.registerTask('run-all-tests', ['karma:unit_tests','karma:form_tests']);
+    grunt.registerTask('run-form-tests',['karma:form_tests']);
 }
 
 
