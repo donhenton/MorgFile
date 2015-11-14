@@ -34,25 +34,25 @@ describe("form_tests.js", function () {
      * this might be used to compose a form and submit it to the controller
      * but it doesn't seem to work
      * @returns {undefined}
-     
+     */
      it('form should exist', function () {
      
      var templateHtml = templateCacheRef.get('public_html/' +
-     'morgue-app/sections/edit-folder/edit-folder.tpl.html')
+     'form_test/form.tpl.html')
      
      var formElem = angular.element("<div>" + templateHtml + "</div>")
-     //scopeRef.editFolder={};
-     //scopeRef.editFolder.newEntry = {};
-     //scopeRef.editFolder.newEntry.name = "@@@@@@@@@@BONZO@@@@@@@@@@@@@@"
+      scopeRef.test={};
+      scopeRef.test.testData = {};
+      scopeRef.testData="get a job";
      var editForm = compileRef(formElem)(scopeRef)
      scopeRef.$apply()
      expect(editForm.$valid).toBeFalsy();
-     //editForm.name.$setViewValue('BANANA');
-     // console.log(editForm)
+      
+       console.log(editForm)
      
      
      });
-     */
+      
 
 
     it('simple test', function () {
