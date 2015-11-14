@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/dhenton/angular/MorgFile/karma-scripts/angular-unit-tests.conf.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/jasmine/jasmine.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/test/unit_tests/controllers/controller_tests.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/morgue-app/services/utils.fct.js</file>
+        </group>
     </open-files>
 </project-private>

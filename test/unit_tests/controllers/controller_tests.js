@@ -12,6 +12,11 @@ describe("controllers/controller_tests.js", function () {
     var editController;
     var utilityServiceRef;
     var folderServiceRef;
+    var compileRef;
+    var templateCacheRef;
+    var scopeRef;
+
+
     sampleFolder.folder =
             {
                 "name": "Space Ships",
@@ -54,20 +59,52 @@ describe("controllers/controller_tests.js", function () {
         beforeEach(function ()
         {
             module('app');
+            module('myTemplates')
 
-            inject(function ($controller, $rootScope, UtilityService, FolderService) {
+            inject(function ($controller, $rootScope,
+                    UtilityService, FolderService, $templateCache, $compile) {
+                compileRef = $compile;
+                templateCacheRef = $templateCache;
                 var parentScope = $rootScope.$new();
+                var scope = parentScope.$new();
+                scopeRef = scope;
                 editController =
-                        $controller('EditFolderController', {$scope: parentScope.$new(),
+                        $controller('EditFolderController', {$scope: scope,
                             folderItem: sampleFolder});
                 utilityServiceRef = UtilityService;
                 folderServiceRef = FolderService;
                 //spyOn(utilityServiceRef,'isUrlOkay').and.callFake(function(u){return true})
+                ///create a form
+
 
 
             });
         });
 
+        ///////form testing//////////////////////////////////////////
+        /**
+         * this might be used to compose a form and submit it to the controller
+         * but it doesn't seem to work
+         * @returns {undefined}
+         */
+        it('form should exist', function () {
+             
+            var templateHtml = templateCacheRef.get('public_html/' +
+                    'morgue-app/sections/edit-folder/edit-folder.tpl.html')
+
+            var formElem = angular.element("<div>" + templateHtml + "</div>")
+            //scopeRef.editFolder={};
+            //scopeRef.editFolder.newEntry = {};
+            //scopeRef.editFolder.newEntry.name = "@@@@@@@@@@BONZO@@@@@@@@@@@@@@"
+            var editForm = compileRef(formElem)(scopeRef)
+            scopeRef.$apply()
+            expect(editForm.$valid).toBeFalsy();
+            //editForm.name.$setViewValue('BANANA');
+            console.log(editForm)
+
+
+        });
+        ////////////////////////////////////////////////////////////
 
         it('controller assignment should not be null', function () {
             expect(editController === null).toBe(false)
@@ -101,7 +138,7 @@ describe("controllers/controller_tests.js", function () {
 
         });
 
-     
+
 
         it('test isUrlOkay', function () {
             var testurl = "http://www.fred.com";
@@ -114,6 +151,7 @@ describe("controllers/controller_tests.js", function () {
             expect(utilityServiceRef.isUrlOkay(testurl)).toEqual(false);
 
         })
+
 
     })
 
