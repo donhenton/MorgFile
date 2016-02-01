@@ -13,9 +13,9 @@ function routes($routeProvider,FOLDER_PREFIX) {
             .when('/export' ,
             
             {
-                templateUrl: FOLDER_PREFIX +  'sections/export/export.tpl.html',
-                controller: 'ExportController',
-                controllerAs: 'export' 
+                templateUrl: FOLDER_PREFIX +  'sections/export/export.tpl.html', 
+                 controller: 'ExportController' ,
+                 controllerAs: 'export' 
                 
                 
             })

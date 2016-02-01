@@ -5,7 +5,7 @@ angular
 
 
 
-function folderService($log, $http)
+function folderService($log, localStorageService, $q)
 {
     var data = {
         "createEmptyFolderStructure": createEmptyFolderStructure,
@@ -24,22 +24,40 @@ function folderService($log, $http)
     var idCounter = -1;
     var folderData = null;
     var localData = null;
-    var g_morgueUrlBase ="http://donhenton-node.herokuapp.com/morguefile/"; //requires CORS  
-    //var g_morgueUrlBase ="http://localhost:3000/morguefile/";
+    var LS_KEY = "morguefile_data";
+
+  
 
     function saveData(changedFolders)
     {
         angular.forEach(folderData, function (folder, key) {
             //urls,pins,pinterestBoards
-              cleanBlanks(folder.images.urls,"urls");
-              cleanBlanks(folder.images.pins,"pins");
-              cleanBlanks(folder.images.pinterestBoards,"boards");
-            
+            cleanBlanks(folder.images.urls, "urls");
+            cleanBlanks(folder.images.pins, "pins");
+            cleanBlanks(folder.images.pinterestBoards, "boards");
+
         });
+
+
+        return localStorageSave(localData);
         
-        
-        
-        return  $http.put(g_morgueUrlBase + "saveData", localData);
+    }
+
+
+    /**
+     * TODO return a promise containing data or error
+     * upstream expects this pattern
+     * @param {type} dataToSave
+     * @returns {undefined}
+     */
+    function localStorageSave(dataToSave)
+    {
+        localStorageService.set(LS_KEY, localData);
+        var deferred = $q.defer();
+        deferred.resolve({'success': true});
+        return deferred.promise;
+
+
     }
 
     function setFullData(d)
@@ -57,14 +75,30 @@ function folderService($log, $http)
         });
     }
 
+    function localStorageGet()
+    {
+        var data = localStorageService.get(LS_KEY);
+        var deferred = $q.defer();
+        deferred.resolve(data);
+        return deferred.promise;
+
+
+    }
+
     function init()
     {
         if (localData == null)
         {
+            var localData = localStorageService.get(LS_KEY);
+            if (localData === null)
+            {
+                localData = {"userId": 1, "folderData": []}
+            }
 
-            return  $http.get(g_morgueUrlBase + "getData");
-        }
-        else
+            var deferred = $q.defer();
+            deferred.resolve(localData);
+            return deferred.promise;
+        } else
         {
             //return a promise whose resolve is 
         }
@@ -182,10 +216,10 @@ function folderService($log, $http)
         {
             if (value.trim() === "")
             {
-                $log.debug(type+" hit blank at index is "+key+" old len "+arrayValue.length)
+                $log.debug(type + " hit blank at index is " + key + " old len " + arrayValue.length)
                 arrayValue.splice(key, 1);
-                
-            } 
+
+            }
         });
 
     }

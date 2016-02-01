@@ -14,10 +14,10 @@ and open the template in the editor.
         
         <div class="row">
     <div class="well well-sm">
-        <p> To export all collections, 
+        <p> To export, 
             cut and paste the JSON below and save to an external file.
             To import a collection, cut and paste from a file that 
-            has been saved from here and press the 'Save Collection' button.
+            has been saved from here and press the 'Save Data' button.
         </p>
 
     </div>
@@ -44,14 +44,14 @@ and open the template in the editor.
         
  <div class="container">
     <div class="row">
-        <h3>Import/Export Entire Collection</h3>
+        <h3>Import/Export</h3>
         
         
         
         <div class="row grouping-box">
 
 
-            <textarea   ng-model="import.collectionJSON" style="width:100%;height:250px">
+            <textarea   ng-model="export.data" style="width:100%;height:250px">
                  
             </textarea>
 
@@ -66,8 +66,8 @@ and open the template in the editor.
         
         <form    class="form-horizontal" name="settings.submitForm"   role="form">   
             
-            <button  ng-click="import.saveCollection()" class="btn btn-primary">Save Collection</button>
-             <span ng-class='import.messageClasses'>{{import.message}}</span> 
+            <button  ng-click="export.saveData()" class="btn btn-primary">Save Data</button>
+             <span ng-class='export.messageClasses'>{{export.message}}</span> 
 
 
         </form>
