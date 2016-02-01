@@ -53,14 +53,14 @@ angular.module('app').controller('MainController', function (DialogService,
     {
 
         FolderService.saveData(vm.results)
-                .success(function (data, status, headers, config) {
+                .then(function (data, status, headers, config) {
 
                     vm.saveMessage = "Changes Saved";
                     $timeout(function () {
                         vm.saveMessage = "";
                     }, 1500);
 
-                }).error(function (data, status, headers, config) {
+                }).catch(function (data, status, headers, config) {
             $log.debug("error in persist call " + status + " " +
                     angular.toJson(data)
                     );

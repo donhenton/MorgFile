@@ -15,8 +15,10 @@ function folderService($log, localStorageService, $q)
         "bulkAddToFolders": bulkAddToFolders,
         "completeEdit": completeEdit,
         "init": init,
+        "getLocalData": getLocalData,
         "getFolders": getFolders,
         "setFullData": setFullData,
+        "importCollection": importCollection,
         "saveData": saveData
 
 
@@ -27,8 +29,15 @@ function folderService($log, localStorageService, $q)
     var LS_KEY = "morguefile_data";
 
   
+  
+    function importCollection(collectionAsString)
+    {
+        var d = angular.fromJson(collectionAsString);  
+        setFullData(d);
+  
+    }
 
-    function saveData(changedFolders)
+    function saveData()
     {
         angular.forEach(folderData, function (folder, key) {
             //urls,pins,pinterestBoards
@@ -39,7 +48,7 @@ function folderService($log, localStorageService, $q)
         });
 
 
-        return localStorageSave(localData);
+        return localStorageSave();
         
     }
 
@@ -47,10 +56,9 @@ function folderService($log, localStorageService, $q)
     /**
      * TODO return a promise containing data or error
      * upstream expects this pattern
-     * @param {type} dataToSave
      * @returns {undefined}
      */
-    function localStorageSave(dataToSave)
+    function localStorageSave()
     {
         localStorageService.set(LS_KEY, localData);
         var deferred = $q.defer();
@@ -75,26 +83,24 @@ function folderService($log, localStorageService, $q)
         });
     }
 
-    function localStorageGet()
+    function getLocalData()
     {
-        var data = localStorageService.get(LS_KEY);
-        var deferred = $q.defer();
-        deferred.resolve(data);
-        return deferred.promise;
-
-
+        init();
+        return localData;
     }
 
     function init()
     {
         if (localData == null)
         {
-            var localData = localStorageService.get(LS_KEY);
-            if (localData === null)
+            
+            var d = localStorageService.get(LS_KEY);
+            if (d === null)
             {
-                localData = {"userId": 1, "folderData": []}
+                d = {"userId": 1, "folderData": []};
+                localStorageService.set(LS_KEY,d);
             }
-
+            setFullData(d);
             var deferred = $q.defer();
             deferred.resolve(localData);
             return deferred.promise;
