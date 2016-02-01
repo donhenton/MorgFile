@@ -1,5 +1,5 @@
 angular.module('app').controller('EditFolderController',
-        function (FolderService, UtilityService, $log, $scope, folderItem) {
+        function (FolderService, UtilityService, $log, $scope,$timeout, folderItem) {
             var vm = this;
             vm.folder = folderItem.folder;
             vm.newEntry = {};
@@ -87,14 +87,14 @@ angular.module('app').controller('EditFolderController',
                     FolderService.completeEdit(saveData);
 
                     FolderService.saveData(vm.results)
-                            .success(function (data, status, headers, config) {
+                            .then(function (data, status, headers, config) {
 
                                 vm.feedbackMessage = "Changes Saved";
                                 $timeout(function () {
                                     vm.feedbackMessage = "";
                                 }, 1500);
 
-                            }).error(function (data, status, headers, config) {
+                            }).catch(function (data, status, headers, config) {
                         vm.feedbackMessage = "error in persist call " + status + " " +
                                 angular.toJson(data)
 

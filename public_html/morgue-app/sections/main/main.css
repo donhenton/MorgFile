@@ -12,6 +12,6 @@ div.folderContainer
 {
     overflow-y:  scroll ;
     height: 250px;
-    border:thin solid green
+     border: double ;
     
 }

@@ -10,6 +10,17 @@ function routes($routeProvider,FOLDER_PREFIX) {
                 controller: 'MainController',
                 controllerAs: 'main'
             })
+            .when('/export' ,
+            
+            {
+                templateUrl: FOLDER_PREFIX +  'sections/export/export.tpl.html', 
+                 controller: 'ExportController' ,
+                 controllerAs: 'export' 
+                
+                
+            })
+            
+            
             .when('/folder-contents/:id', {
                 templateUrl: FOLDER_PREFIX +  'sections/folder-contents/folder-contents.tpl.html',
                 controller: 'FolderContentsController',
