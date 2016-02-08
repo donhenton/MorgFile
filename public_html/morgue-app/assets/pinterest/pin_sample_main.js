@@ -1067,6 +1067,13 @@
 
                 $.f.cssHook(parent, container);
                 $.f.replace(parent, container);
+                
+                messagePump.raiseEvent({'url': pin.pinner.image_small_url}, "FINISH-PIN");
+                
+                
+                
+                
+                
               } else {
                 $.f.debug('Not enough data to embed a pin; aborting');
               }
@@ -1419,8 +1426,7 @@
             }
           }
           
-          //dhh insert here
-          messagePump.raiseEvent("build1","PINTEREST_DONE");
+        
           
         },
         config: function () {
@@ -1582,7 +1588,7 @@
               'assets': 'en',
               'height': '20',
               'shape': 'rect',
-              'debug':true   //dhh1 
+             // 'debug':true   //dhh1 
             },
             'strings': $.a.strings.en,
             'guid': '',

@@ -18,18 +18,11 @@ angular.module('app.services').service('MessagePumpService', messageService);
   //necessary
   
   
-  this.register = function(fn,eventType,ident)
+  this.subscribe = function(fn,eventType)
   {
-      if (typeof cache[ident] === 'undefined')
-      {
-        cache[ident] = 1;
+      
         messagePump.subscribe(fn,eventType);
-       // $log.debug("hit register "+eventType+" "+ident);
-      }  
-      else
-      {
-         // $log.debug("already registered "+eventType+" "+ident);
-      }
+      
       
       
   }

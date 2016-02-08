@@ -22,8 +22,7 @@ angular.module('app').controller('FolderContentsController',
             
             //apparently this is only called once/////////////////
             //listening to events from the pinterest code see pin_sample_main
-            MessagePumpService.register(respondToPinterest,
-                    "PINTEREST_DONE", "editFolder");
+            MessagePumpService.subscribe(respondToPinterest, "FINISH-PIN");
 
 
             //not used at this time        
@@ -31,12 +30,12 @@ angular.module('app').controller('FolderContentsController',
             {
 
                 vm.pinCounter = vm.pinCounter + 1;
-                // $log.debug("got pinterest done " 
-                //         + ev+" total "+vm.totalPins+" ct "+vm.pinCounter);
+                //  $log.debug("got pinterest done " 
+                 //         + ev+" total "+vm.totalPins+" ct "+vm.pinCounter);
                 if (vm.pinCounter === vm.totalPins)
                 {
                     vm.pinCounter = 0;
-                    // $log.debug("final hit " + vm.totalPins)
+                    //  $log.debug("final hit " + vm.totalPins)
                 }
 
 
