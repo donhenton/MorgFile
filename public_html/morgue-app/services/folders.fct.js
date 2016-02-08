@@ -5,7 +5,7 @@ angular
 
 
 
-function folderService($log, localStorageService, $q)
+function folderService($log, $rootScope, localStorageService, $q)
 {
     var data = {
         "createEmptyFolderStructure": createEmptyFolderStructure,
@@ -28,14 +28,19 @@ function folderService($log, localStorageService, $q)
     var localData = null;
     var LS_KEY = "morguefile_data";
 
-  
-  
+    $rootScope.$on('delete-item', function (ev, msg) {
+        console.log("delete-item " + msg.type + " " + msg.url);
+
+    });
+
+
+
     function importCollection(collectionAsString)
     {
-        var d = angular.fromJson(collectionAsString);  
+        var d = angular.fromJson(collectionAsString);
         setFullData(d);
         saveData();
-  
+
     }
 
     function saveData()
@@ -50,7 +55,7 @@ function folderService($log, localStorageService, $q)
 
 
         return localStorageSave();
-        
+
     }
 
 
@@ -94,12 +99,12 @@ function folderService($log, localStorageService, $q)
     {
         if (localData == null)
         {
-            
+
             var d = localStorageService.get(LS_KEY);
             if (d === null)
             {
                 d = {"userId": 1, "folderData": []};
-                localStorageService.set(LS_KEY,d);
+                localStorageService.set(LS_KEY, d);
             }
             setFullData(d);
             var deferred = $q.defer();

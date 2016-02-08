@@ -37,13 +37,18 @@
 
         </div>   
 
-
+ 
         <div deckgrid class="deckgrid" source="folderContents.imageCards">
             <div class="a-card thumbnail">
 
                 <a target="_new" href="{{card.src}}">
                     <img  src="" data-ng-src="{{card.src}}">
+                   
                 </a>
+                 <div class='delete-container'>
+                        
+                        <button class='btn btn-small btn-danger' ng-click="card.doDelete()">Delete</button>
+                    </div>
             </div>
         </div>
 

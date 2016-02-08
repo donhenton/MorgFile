@@ -1,6 +1,6 @@
 angular.module('app').controller('FolderContentsController',
         function (DialogService, FolderService,
-                MessagePumpService, $log, $scope, folderItem) {
+                MessagePumpService, $log, $scope,$rootScope, folderItem) {
             var vm = this;
             vm.folder = folderItem.folder;
             vm.slides = [];
@@ -34,6 +34,13 @@ angular.module('app').controller('FolderContentsController',
                 }
 
 
+            }
+            
+            vm.fred = function(){ console.log("bite me")}
+            
+            vm.deleteImage = function(src)
+            {
+                console.log('image deleted '+src);
             }
 
             vm.pinPageChanged = function ()
@@ -107,7 +114,7 @@ angular.module('app').controller('FolderContentsController',
             vm.imagePageChanged = function ()
             {
 
-
+                 
                 for (var i = 0; i < vm.maxImages; i++)
                 {
                     vm.imageBuffer[i] = null;
@@ -153,9 +160,12 @@ angular.module('app').controller('FolderContentsController',
                 for (var i = 0; i < vm.imageBuffer.length; i++)
                 {
                     var card = {};
-
                     card["src"] = vm.imageBuffer[i];
-
+                    
+                    card.doDelete = function(){
+                        $rootScope.$emit("delete-item",{'type': 'image','url':this.src});
+                     
+                    };
                     vm.imageCards.push(card);
 
                 }

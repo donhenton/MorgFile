@@ -1,4 +1,4 @@
-angular.module('app').directive('imageWidget', function ($log, $timeout) {
+angular.module('app').directive('imageWidget', function ($log,$rootScope, $timeout) {
 
 /**
  * create a pinterest board widget
@@ -31,8 +31,7 @@ var doDelete = function(url)
     var createImageText = function (url)
     {
        return "<a href='" +
-                url + "' data-pin-do='embedPin'></a> " +
-                "<a  ng-click='$event.preventDefault();doDelete(url)'href='#/'>Delete</a>"
+                url + "' data-pin-do='embedPin'></a> ";
 
     }
     
@@ -67,10 +66,19 @@ var doDelete = function(url)
                     text =  createImageText($scope.url);
                     
                 }
+               
+                
+                var deleteButton = angular.element("<button class='btn btn-small onclick= btn-danger'>Delete</button>")
+                deleteButton.on("click",function()
+                {
+                    $rootScope.$emit("delete-item",{'type': $scope.type,'url':$scope.url});
+                });
+                
+                var deleteContainer = angular.element("<div class='delete-container'></div>").append(deleteButton);
+                
+                element.parent().append(deleteContainer)
 
-
-
-                element.html(text);
+                 element.html(text);
 
             }
 
