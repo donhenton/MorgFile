@@ -195,6 +195,7 @@ angular.module('app').controller('FolderContentsController',
                 if (typeof parsePinBtns != 'undefined')
                 {
                     //  $log.debug("call parse")
+                    //defined in the script tag via data-pin-build="parsePinBtns"
                     parsePinBtns();
 
                 }

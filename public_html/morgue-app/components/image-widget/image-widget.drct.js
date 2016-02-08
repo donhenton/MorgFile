@@ -16,6 +16,13 @@ angular.module('app').directive('imageWidget', function ($log, $timeout) {
 
     }
 
+
+var doDelete = function(url)
+{
+    alert(url)
+}
+
+
 /**
  * create a pinterest widget for an image
  * @param {type} id
@@ -24,10 +31,12 @@ angular.module('app').directive('imageWidget', function ($log, $timeout) {
     var createImageText = function (url)
     {
        return "<a href='" +
-                url + "' data-pin-do='embedPin'></a>"
-
+                url + "' data-pin-do='embedPin'></a> " +
+                "<a  ng-click='$event.preventDefault();doDelete(url)'href='#/'>Delete</a>"
 
     }
+    
+   
 
     return {
         restrict: 'E',
