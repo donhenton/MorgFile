@@ -213,19 +213,6 @@ angular.module('app').controller('FolderContentsController',
 
             }
 
-//
-//
-//            for (var i = 0; i < vm.folder.images.pins.length; i++)
-//            {
-//                var card = {};
-//
-//                card["src"] = vm.folder.images.pins[i];
-//
-//                vm.pinCards.push(card);
-//
-//            }
-
-
             vm.refreshBoards = function ()
             {
                 if (typeof parsePinBtns != 'undefined')

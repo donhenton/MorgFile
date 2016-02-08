@@ -85,7 +85,7 @@ function routes($routeProvider, FOLDER_PREFIX) {
                 controllerAs: 'loadFolders',
                 resolve: {
                     type: function ($route) {
-                        return $route.current.params.type
+                        return $route.current.params.type;
                     }
 
                 }
