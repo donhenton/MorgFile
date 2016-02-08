@@ -34,6 +34,7 @@ function folderService($log, localStorageService, $q)
     {
         var d = angular.fromJson(collectionAsString);  
         setFullData(d);
+        saveData();
   
     }
 
