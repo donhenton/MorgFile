@@ -28,8 +28,8 @@ module.exports = function (grunt) {
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.registerTask('run-all-tests', ['karma:unit_tests','karma:form_tests']);
-    grunt.registerTask('run-form-tests',['karma:form_tests']);
+    grunt.registerTask('run-all-tests', ['clean','karma:unit_tests','karma:form_tests']);
+    grunt.registerTask('run-form-tests',['clean','karma:form_tests']);
 }
 
 

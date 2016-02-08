@@ -55,7 +55,7 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
 
     //handle a delete request from the Images,Boards,Pins for a delete
     $rootScope.$on('delete-item', function (ev, msg) {
-        console.log("delete-item " + msg.type + " " + msg.url + " " + msg.folderIdx + " " + typeof msg.folderIdx);
+   //     console.log("delete-item " + msg.type + " " + msg.url + " " + msg.folderIdx + " " + typeof msg.folderIdx);
 
         //urls,pin-image,pin-board
         var dataSection = null;
