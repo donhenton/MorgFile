@@ -1,9 +1,11 @@
 angular.module('app').controller('FolderContentsController',
         function (DialogService, FolderService,
-                MessagePumpService, $log, $scope, folderItem) {
+                MessagePumpService, $log, $scope, $rootScope, folderItem, tab) {
             var vm = this;
             vm.folder = folderItem.folder;
             vm.slides = [];
+            vm.tab = tab;
+            //   console.log("TAB "+vm.tab)
             vm.imageCards = [];
             vm.pinCards = [];
 
@@ -14,26 +16,57 @@ angular.module('app').controller('FolderContentsController',
             vm.currentPinPage = 1;
             vm.totalPins = vm.folder.images.pins.length;
             vm.pinCounter = 0;
+            vm.boardsActive = false;
+            vm.pinsActive = false;
+            vm.imagesActive = false;
+            
             //apparently this is only called once/////////////////
             //listening to events from the pinterest code see pin_sample_main
-            MessagePumpService.register(respondToPinterest,
-                    "PINTEREST_DONE", "editFolder");
+            MessagePumpService.subscribe(respondToPinterest, "FINISH-PIN");
 
-                    
+
             //not used at this time        
             function respondToPinterest(ev)
             {
 
                 vm.pinCounter = vm.pinCounter + 1;
-               // $log.debug("got pinterest done " 
-               //         + ev+" total "+vm.totalPins+" ct "+vm.pinCounter);
+                //  $log.debug("got pinterest done " 
+                 //         + ev+" total "+vm.totalPins+" ct "+vm.pinCounter);
                 if (vm.pinCounter === vm.totalPins)
                 {
                     vm.pinCounter = 0;
-                   // $log.debug("final hit " + vm.totalPins)
+                    //  $log.debug("final hit " + vm.totalPins)
                 }
 
 
+            }
+
+            selectTabFromLS = function ()
+            {
+                vm.boardsActive = false;
+                vm.pinsActive = false;
+                vm.imagesActive = false;
+                
+                if ('Images' === vm.tab)
+                {
+                    vm.imagesActive = true;
+                }
+                if ('Boards' === vm.tab)
+                {
+                    vm.boardsActive = true;
+                }
+                if ('Pins' === vm.tab)
+                {
+                    vm.pinsActive =   true;
+                }
+                
+            }
+
+            selectTabFromLS();
+
+            vm.deleteImage = function (src)
+            {
+                console.log('image deleted ' + src);
             }
 
             vm.pinPageChanged = function ()
@@ -48,8 +81,7 @@ angular.module('app').controller('FolderContentsController',
                 if (vm.totalPins < vm.maxPins)
                 {
                     maxLoop = vm.totalPins;
-                }
-                else
+                } else
                 {
                     maxLoop = vm.maxPins;
                 }
@@ -87,6 +119,7 @@ angular.module('app').controller('FolderContentsController',
                     var card = {};
 
                     card["src"] = vm.pinBuffer[i];
+                    card.folderIdx = vm.folder.id;
 
                     vm.pinCards.push(card);
 
@@ -103,7 +136,7 @@ angular.module('app').controller('FolderContentsController',
             vm.imageBuffer = new Array(vm.maxImages);
             vm.currentImagePage = 1;
             vm.totalImages = vm.folder.images.urls.length;
-
+       //     console.log('image folder ' + vm.folder.id)
             vm.imagePageChanged = function ()
             {
 
@@ -116,8 +149,7 @@ angular.module('app').controller('FolderContentsController',
                 if (vm.totalImages < vm.maxImages)
                 {
                     maxLoop = vm.totalImages;
-                }
-                else
+                } else
                 {
                     maxLoop = vm.maxImages;
                 }
@@ -153,9 +185,12 @@ angular.module('app').controller('FolderContentsController',
                 for (var i = 0; i < vm.imageBuffer.length; i++)
                 {
                     var card = {};
-
                     card["src"] = vm.imageBuffer[i];
 
+                    card.doDelete = function () {
+                        $rootScope.$emit("delete-item", {'type': 'urls', 'url': this.src, 'folderIdx': vm.folder.id});
+
+                    };
                     vm.imageCards.push(card);
 
                 }
@@ -177,24 +212,12 @@ angular.module('app').controller('FolderContentsController',
 
             }
 
-//
-//
-//            for (var i = 0; i < vm.folder.images.pins.length; i++)
-//            {
-//                var card = {};
-//
-//                card["src"] = vm.folder.images.pins[i];
-//
-//                vm.pinCards.push(card);
-//
-//            }
-
-
             vm.refreshBoards = function ()
             {
                 if (typeof parsePinBtns != 'undefined')
                 {
                     //  $log.debug("call parse")
+                    //defined in the script tag via data-pin-build="parsePinBtns"
                     parsePinBtns();
 
                 }

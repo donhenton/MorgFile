@@ -1,4 +1,4 @@
-angular.module('app').directive('imageWidget', function ($log, $timeout) {
+angular.module('app').directive('imageWidget', function ($log,$rootScope, $timeout) {
 
 /**
  * create a pinterest board widget
@@ -16,6 +16,13 @@ angular.module('app').directive('imageWidget', function ($log, $timeout) {
 
     }
 
+
+var doDelete = function(url)
+{
+    alert(url)
+}
+
+
 /**
  * create a pinterest widget for an image
  * @param {type} id
@@ -24,14 +31,15 @@ angular.module('app').directive('imageWidget', function ($log, $timeout) {
     var createImageText = function (url)
     {
        return "<a href='" +
-                url + "' data-pin-do='embedPin'></a>"
-
+                url + "' data-pin-do='embedPin'></a> ";
 
     }
+    
+   
 
     return {
         restrict: 'E',
-        scope: {"url": '=', "type": '@'},
+        scope: {"url": '=', "type": '@',"folder": '='},
         compile: function (element, attributes)
         {
 
@@ -58,8 +66,17 @@ angular.module('app').directive('imageWidget', function ($log, $timeout) {
                     text =  createImageText($scope.url);
                     
                 }
-
-
+               
+                
+                var deleteButton = angular.element("<button class='btn btn-xs btn-danger'>Delete</button>")
+                deleteButton.on("click",function()
+                {
+                    $rootScope.$emit("delete-item",{'type': 'pin-'+$scope.type,'url':$scope.url,'folderIdx': $scope.folder});
+                });
+                
+                var deleteContainer = angular.element("<div class='delete-container'></div>").append(deleteButton);
+               // console.log("fff "+$scope.type+" "+$scope.folder+" "+$scope.url)
+                element.parent().append(deleteContainer)
 
                 element.html(text);
 
