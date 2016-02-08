@@ -39,7 +39,7 @@
 
  
         <div deckgrid class="deckgrid" source="folderContents.imageCards">
-            <div class="a-card thumbnail">
+            <div class="a-card thumbnail image">
 
                 <a target="_new" href="{{card.src}}">
                     <img  src="" data-ng-src="{{card.src}}">
@@ -47,7 +47,7 @@
                 </a>
                  <div class='delete-container'>
                         
-                        <button class='btn btn-small btn-danger' ng-click="card.doDelete()">Delete</button>
+                        <button class='btn btn-xs btn-danger' ng-click="card.doDelete()">Delete</button>
                     </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
         </div>   
 
         <div deckgrid class="deckgrid" source="folderContents.pinCards">
-            <div class="a-card thumbnail">
+            <div class="a-card thumbnail pinterest">
 
                 <image-widget type="image" url="card.src" />
 

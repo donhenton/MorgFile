@@ -68,7 +68,7 @@ var doDelete = function(url)
                 }
                
                 
-                var deleteButton = angular.element("<button class='btn btn-small onclick= btn-danger'>Delete</button>")
+                var deleteButton = angular.element("<button class='btn btn-xs btn-danger'>Delete</button>")
                 deleteButton.on("click",function()
                 {
                     $rootScope.$emit("delete-item",{'type': $scope.type,'url':$scope.url});
