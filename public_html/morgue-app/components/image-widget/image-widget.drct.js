@@ -39,7 +39,7 @@ var doDelete = function(url)
 
     return {
         restrict: 'E',
-        scope: {"url": '=', "type": '@'},
+        scope: {"url": '=', "type": '@',"folder": '='},
         compile: function (element, attributes)
         {
 
@@ -71,14 +71,14 @@ var doDelete = function(url)
                 var deleteButton = angular.element("<button class='btn btn-xs btn-danger'>Delete</button>")
                 deleteButton.on("click",function()
                 {
-                    $rootScope.$emit("delete-item",{'type': $scope.type,'url':$scope.url});
+                    $rootScope.$emit("delete-item",{'type': 'pin-'+$scope.type,'url':$scope.url,'folderIdx': $scope.folder});
                 });
                 
                 var deleteContainer = angular.element("<div class='delete-container'></div>").append(deleteButton);
-                
+               // console.log("fff "+$scope.type+" "+$scope.folder+" "+$scope.url)
                 element.parent().append(deleteContainer)
 
-                 element.html(text);
+                element.html(text);
 
             }
 

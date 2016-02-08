@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/dhenton/NetBeansProjects/Morgfile/public_html/morgue-app/sections/folder-contents/folder-contents.tpl.html</file>
-            <file>file:/Users/dhenton/NetBeansProjects/Morgfile/public_html/morgue-app/sections/folder-contents/folder-contents.ctl.js</file>
-            <file>file:/Users/dhenton/NetBeansProjects/Morgfile/public_html/morgue-app/components/image-widget/image-widget.drct.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/index.html</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/morgue-app/sections/folder-contents/folder-contents.tpl.html</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/morgue-app/components/image-widget/image-widget.drct.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/public_html/morgue-app/services/folders.fct.js</file>
+            <file>file:/Users/dhenton/angular/MorgFile/data-backup/newjson.json</file>
         </group>
     </open-files>
 </project-private>

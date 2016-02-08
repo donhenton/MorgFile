@@ -1,63 +1,69 @@
 angular
-        .module('app.routes', ['ngRoute','app.constants'])
+        .module('app.routes', ['ngRoute', 'app.constants'])
         .config(routes);
 
-function routes($routeProvider,FOLDER_PREFIX) {
-   
+function routes($routeProvider, FOLDER_PREFIX) {
+
     $routeProvider.
             when('/', {
-                templateUrl: FOLDER_PREFIX +  'sections/main/main.tpl.html',
+                templateUrl: FOLDER_PREFIX + 'sections/main/main.tpl.html',
                 controller: 'MainController',
                 controllerAs: 'main'
             })
-            .when('/export' ,
-            
-            {
-                templateUrl: FOLDER_PREFIX +  'sections/export/export.tpl.html', 
-                 controller: 'ExportController' ,
-                 controllerAs: 'export' 
-                
-                
-            })
-            
-            
+            .when('/export',
+                    {
+                        templateUrl: FOLDER_PREFIX + 'sections/export/export.tpl.html',
+                        controller: 'ExportController',
+                        controllerAs: 'export'
+
+
+                    })
+
             .when('/folder-contents/:id', {
-                templateUrl: FOLDER_PREFIX +  'sections/folder-contents/folder-contents.tpl.html',
+                templateUrl: FOLDER_PREFIX + 'sections/folder-contents/folder-contents.tpl.html',
                 controller: 'FolderContentsController',
                 controllerAs: 'folderContents',
                 resolve: {
-                    folderItem: function (FolderService, $route,$log) {
-                        
-                        var folderData = 
+                    folderItem: function (FolderService, $route, $log) {
+
+                        var folderData =
                                 {
-                            "folder": 
-                              FolderService.getFolder($route.current.params.id)
-                        };
-                        
-                       
-                        
+                                    "folder":
+                                            FolderService.getFolder($route.current.params.id),
+                                    "tab": 'Images'
+                                };
+
+
+
                         return folderData;
+                    },
+                    tab: function(FolderService)
+                    {
+                        return FolderService.getCurrentTab();
                     }
 
                 }
 
 
             })
-             .when('/edit-folder/:id', {
-                templateUrl: FOLDER_PREFIX +  'sections/edit-folder/edit-folder.tpl.html',
+
+
+            
+            .when('/edit-folder/:id', {
+                templateUrl: FOLDER_PREFIX + 'sections/edit-folder/edit-folder.tpl.html',
                 controller: 'EditFolderController',
                 controllerAs: 'editFolder',
                 resolve: {
-                    folderItem: function (FolderService, $route,$log) {
-                        
-                        var folderData = 
+                    folderItem: function (FolderService, $route, $log) {
+
+                        var folderData =
                                 {
-                            "folder": 
-                              FolderService.getFolder($route.current.params.id)
-                        };
-                        
-                       
-                        
+                                    "folder":
+                                            FolderService.getFolder($route.current.params.id)
+                                };
+
+
+
                         return folderData;
                     }
 
@@ -67,7 +73,7 @@ function routes($routeProvider,FOLDER_PREFIX) {
             })
             //images,urls,boards
             .when('/load-folders/:type', {
-                templateUrl: FOLDER_PREFIX +  'sections/load-folders/load-folders.tpl.html',
+                templateUrl: FOLDER_PREFIX + 'sections/load-folders/load-folders.tpl.html',
                 controller: 'LoadFoldersController',
                 controllerAs: 'loadFolders',
                 resolve: {
@@ -81,6 +87,6 @@ function routes($routeProvider,FOLDER_PREFIX) {
             .otherwise({
                 redirectTo: '/'
             });
-            
-           
+
+
 }

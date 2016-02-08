@@ -25,7 +25,7 @@
 <uib-tabset>
 
 
-    <uib-tab heading="Images">
+    <uib-tab heading="Images" active="folderContents.imagesActive">
 
 
 
@@ -58,7 +58,7 @@
     </uib-tab>
 
 
-    <uib-tab heading="Pinterest Pins">
+    <uib-tab heading="Pinterest Pins" active="folderContents.pinsActive">
 
          <div class="row">
             <uib-pagination total-items="folderContents.totalPins" 
@@ -67,12 +67,12 @@
                             ng-change="folderContents.pinPageChanged()"></uib-pagination>
 
         </div>   
-
+        
         <div deckgrid class="deckgrid" source="folderContents.pinCards">
             <div class="a-card thumbnail pinterest">
-
-                <image-widget type="image" url="card.src" />
-
+                
+                 <image-widget folder="card.folderIdx" type="image" url="card.src" />  
+                
             </div>
         </div>
 
@@ -88,14 +88,14 @@
 
 
 
-    <uib-tab heading="Pinterest Boards" select="folderContents.refreshBoards()">
+    <uib-tab heading="Pinterest Boards" active="folderContents.boardsActive" select="folderContents.refreshBoards()">
         <br>
         <div class="col-sm-offset-3 col-sm-6">
 
             <uib-carousel interval="-1" no-wrap="false">
                 <uib-slide ng-repeat="slide in folderContents.slides" active="slide.active">
-
-                    <image-widget type="board" url="slide.image" />
+                     
+                    <image-widget url="slide.image" folder="folderContents.folder.id"  type="board"  />
                 </uib-slide>
 
             </uib-carousel>
