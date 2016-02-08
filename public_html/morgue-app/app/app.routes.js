@@ -8,7 +8,14 @@ function routes($routeProvider, FOLDER_PREFIX) {
             when('/', {
                 templateUrl: FOLDER_PREFIX + 'sections/main/main.tpl.html',
                 controller: 'MainController',
-                controllerAs: 'main'
+                controllerAs: 'main',
+                resolve:
+                        {
+                            clean: function (FolderService)
+                            {
+                                    FolderService.clearCurrentTab();
+                            }
+                        }
             })
             .when('/export',
                     {
@@ -37,7 +44,7 @@ function routes($routeProvider, FOLDER_PREFIX) {
 
                         return folderData;
                     },
-                    tab: function(FolderService)
+                    tab: function (FolderService)
                     {
                         return FolderService.getCurrentTab();
                     }
@@ -48,7 +55,7 @@ function routes($routeProvider, FOLDER_PREFIX) {
             })
 
 
-            
+
             .when('/edit-folder/:id', {
                 templateUrl: FOLDER_PREFIX + 'sections/edit-folder/edit-folder.tpl.html',
                 controller: 'EditFolderController',

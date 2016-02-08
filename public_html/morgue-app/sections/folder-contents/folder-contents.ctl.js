@@ -54,7 +54,7 @@ angular.module('app').controller('FolderContentsController',
                 }
                 if ('Boards' === vm.tab)
                 {
-                    vm.imagesActive = true;
+                    vm.boardsActive = true;
                 }
                 if ('Pins' === vm.tab)
                 {
@@ -137,7 +137,7 @@ angular.module('app').controller('FolderContentsController',
             vm.imageBuffer = new Array(vm.maxImages);
             vm.currentImagePage = 1;
             vm.totalImages = vm.folder.images.urls.length;
-            console.log('image folder ' + vm.folder.id)
+       //     console.log('image folder ' + vm.folder.id)
             vm.imagePageChanged = function ()
             {
 

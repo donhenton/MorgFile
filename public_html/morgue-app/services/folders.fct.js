@@ -20,7 +20,8 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
         "setFullData": setFullData,
         "importCollection": importCollection,
         "saveData": saveData,
-        "getCurrentTab": getCurrentTab
+        "getCurrentTab": getCurrentTab,
+        "clearCurrentTab": clearCurrentTab
 
 
     };
@@ -30,6 +31,13 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
     var LS_KEY = "morguefile_data";
     var LS_TAB_KEY = "morguefile_tab";
 
+
+    function clearCurrentTab()
+    {
+        
+        localStorageService.remove(LS_TAB_KEY);
+        
+    }
 
     function getCurrentTab()
     {
@@ -152,6 +160,8 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
 
     function init()
     {
+        
+        localStorageService.remove(LS_TAB_KEY);
         if (localData == null)
         {
 
@@ -168,6 +178,7 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
         } else
         {
             //return a promise whose resolve is 
+             
         }
     }
 
@@ -265,6 +276,10 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
     function getFolder(idAsString)
     {
         var value = null;
+        if (folderData == null)
+        {
+            init();
+        }
         for (var i = 0; i < folderData.length; i++)
         {
             if (folderData[i].id === parseInt(idAsString))
