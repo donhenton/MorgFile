@@ -1581,7 +1581,8 @@
               'color': 'gray',
               'assets': 'en',
               'height': '20',
-              'shape': 'rect'
+              'shape': 'rect',
+              'debug':true   //dhh1 
             },
             'strings': $.a.strings.en,
             'guid': '',
