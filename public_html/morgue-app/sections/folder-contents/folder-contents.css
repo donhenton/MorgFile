@@ -22,14 +22,23 @@
         content: '1 .column.column-1-1';
     }
 } 
-
-.thumbnail {
-  //position: relative;
- // width: 200px;
- // height: 200px;
- // overflow: hidden;
+ 
+.image.thumbnail {
+ 
  width:80%;
  height:70%;
+ border: thin solid black;
+}
+
+.pinterest.thumbnail {
+ border: none;
+ text-align: center;
+ 
 }
  
- 
+ .delete-container
+{
+    text-align: center;
+    clear: both;
+    margin: 5px auto 5px auto;
+}

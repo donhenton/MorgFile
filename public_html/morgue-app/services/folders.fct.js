@@ -5,7 +5,7 @@ angular
 
 
 
-function folderService($log, localStorageService, $q)
+function folderService($log, $rootScope, $location, $route, localStorageService, $q)
 {
     var data = {
         "createEmptyFolderStructure": createEmptyFolderStructure,
@@ -19,7 +19,9 @@ function folderService($log, localStorageService, $q)
         "getFolders": getFolders,
         "setFullData": setFullData,
         "importCollection": importCollection,
-        "saveData": saveData
+        "saveData": saveData,
+        "getCurrentTab": getCurrentTab,
+        "clearCurrentTab": clearCurrentTab
 
 
     };
@@ -27,14 +29,80 @@ function folderService($log, localStorageService, $q)
     var folderData = null;
     var localData = null;
     var LS_KEY = "morguefile_data";
+    var LS_TAB_KEY = "morguefile_tab";
 
-  
-  
+
+    function clearCurrentTab()
+    {
+        
+        localStorageService.remove(LS_TAB_KEY);
+        
+    }
+
+    function getCurrentTab()
+    {
+        var d = localStorageService.get(LS_TAB_KEY);
+        if (d === null)
+        {
+            d = 'Images';
+            localStorageService.set(LS_TAB_KEY, d);
+        }
+
+
+        return d;
+    }
+
+
+    //handle a delete request from the Images,Boards,Pins for a delete
+    $rootScope.$on('delete-item', function (ev, msg) {
+   //     console.log("delete-item " + msg.type + " " + msg.url + " " + msg.folderIdx + " " + typeof msg.folderIdx);
+
+        //urls,pin-image,pin-board
+        var dataSection = null;
+        var sectionPointer = null;
+        var tabSelector = null;
+        // var pathDest = "#/folder-contents/"+msg.folderIdx;
+        if (msg.type === 'urls')
+        {
+            dataSection = folderData[msg.folderIdx - 1].images.urls;
+            sectionPointer = "urls";
+            tabSelector = "Images";
+        }
+        if (msg.type === 'pin-image')
+        {
+            dataSection = folderData[msg.folderIdx - 1].images.pins;
+            sectionPointer = "pins";
+            tabSelector = "Pins";
+        }
+        if (msg.type === 'pin-board')
+        {
+            dataSection = folderData[msg.folderIdx - 1].images.pinterestBoards;
+            sectionPointer = "pinterestBoards";
+            tabSelector = "Boards";
+        }
+
+        var newDataSection =
+                angular.element.grep(dataSection, function (value)
+                {
+                    return value !== msg.url;
+                });
+        folderData[msg.folderIdx - 1].images[sectionPointer] = newDataSection;
+        saveData();
+        //console.log("path is "+pathDest)
+        //$location.path(pathDest);
+        localStorageService.set(LS_TAB_KEY, tabSelector);
+        $route.reload();
+
+    });
+
+
+
     function importCollection(collectionAsString)
     {
-        var d = angular.fromJson(collectionAsString);  
+        var d = angular.fromJson(collectionAsString);
         setFullData(d);
-  
+        saveData();
+
     }
 
     function saveData()
@@ -49,7 +117,7 @@ function folderService($log, localStorageService, $q)
 
 
         return localStorageSave();
-        
+
     }
 
 
@@ -60,6 +128,7 @@ function folderService($log, localStorageService, $q)
      */
     function localStorageSave()
     {
+
         localStorageService.set(LS_KEY, localData);
         var deferred = $q.defer();
         deferred.resolve({'success': true});
@@ -91,14 +160,16 @@ function folderService($log, localStorageService, $q)
 
     function init()
     {
+        
+        localStorageService.remove(LS_TAB_KEY);
         if (localData == null)
         {
-            
+
             var d = localStorageService.get(LS_KEY);
             if (d === null)
             {
                 d = {"userId": 1, "folderData": []};
-                localStorageService.set(LS_KEY,d);
+                localStorageService.set(LS_KEY, d);
             }
             setFullData(d);
             var deferred = $q.defer();
@@ -107,6 +178,7 @@ function folderService($log, localStorageService, $q)
         } else
         {
             //return a promise whose resolve is 
+             
         }
     }
 
@@ -204,6 +276,10 @@ function folderService($log, localStorageService, $q)
     function getFolder(idAsString)
     {
         var value = null;
+        if (folderData == null)
+        {
+            init();
+        }
         for (var i = 0; i < folderData.length; i++)
         {
             if (folderData[i].id === parseInt(idAsString))
