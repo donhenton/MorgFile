@@ -1,0 +1,22 @@
+{
+  "userId": 1,
+  "folderData": [
+    {
+      "name": "drawing project",
+      "id": 0,
+      "images": {
+        "urls": [],
+        "pinterestBoards": [],
+        "pins": [
+          "https://www.pinterest.com/pin/326792516691839760/",
+          "https://www.pinterest.com/pin/326792516692041402/",
+          "https://www.pinterest.com/pin/326792516692045030/",
+          "https://www.pinterest.com/pin/326792516692041363/",
+          "https://www.pinterest.com/pin/326792516691841625/",
+          "https://www.pinterest.com/pin/326792516691840058/",
+          "https://www.pinterest.com/pin/350928995934203703/"
+        ]
+      }
+    }
+  ]
+}
