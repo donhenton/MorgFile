@@ -25,7 +25,7 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
 
 
     };
-    var idCounter = -1;
+    var idCounter = 0;
     var folderData = null;
     var localData = null;
     var LS_KEY = "morguefile_data";
@@ -58,6 +58,14 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
    //     console.log("delete-item " + msg.type + " " + msg.url + " " + msg.folderIdx + " " + typeof msg.folderIdx);
 
         //urls,pin-image,pin-board
+        
+        var confirmDelete = window.confirm("Confirm delete for this item?'");
+        
+        if (!confirmDelete)
+        {
+            return;
+        }
+        
         var dataSection = null;
         var sectionPointer = null;
         var tabSelector = null;
