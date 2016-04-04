@@ -70,21 +70,33 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
         var sectionPointer = null;
         var tabSelector = null;
         // var pathDest = "#/folder-contents/"+msg.folderIdx;
+        //locate the folder idx is a key, so search for it
+        var targetFolder = null;
+        folderData.forEach(function(folder)
+        {
+            if (msg.folderIdx === folder.id)
+            {
+                targetFolder = folder;
+                 
+            }
+        })
+        
+        
         if (msg.type === 'urls')
         {
-            dataSection = folderData[msg.folderIdx - 1].images.urls;
+            dataSection = targetFolder.images.urls;
             sectionPointer = "urls";
             tabSelector = "Images";
         }
         if (msg.type === 'pin-image')
         {
-            dataSection = folderData[msg.folderIdx - 1].images.pins;
+            dataSection = targetFolder.images.pins;
             sectionPointer = "pins";
             tabSelector = "Pins";
         }
         if (msg.type === 'pin-board')
         {
-            dataSection = folderData[msg.folderIdx - 1].images.pinterestBoards;
+            dataSection = targetFolder.images.pinterestBoards;
             sectionPointer = "pinterestBoards";
             tabSelector = "Boards";
         }
@@ -94,7 +106,7 @@ function folderService($log, $rootScope, $location, $route, localStorageService,
                 {
                     return value !== msg.url;
                 });
-        folderData[msg.folderIdx - 1].images[sectionPointer] = newDataSection;
+        targetFolder.images[sectionPointer] = newDataSection;
         saveData();
         //console.log("path is "+pathDest)
         //$location.path(pathDest);
