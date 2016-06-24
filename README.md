@@ -19,4 +19,4 @@ https://github.com/donhenton/node-sandbox
 
 ## Local Storage Version
 http://donhenton.github.io/MorgFile/public_html/index.html.
-Sample data can be found in the source tree under the sample_data folder
+Sample data can be found in the source tree under the data_backup folder
